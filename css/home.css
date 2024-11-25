@@ -1,0 +1,145 @@
+/* Background for the Home Page */
+body {
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    text-align: center;
+}
+
+/* Profile Image */
+.profile-image {
+    width: 120px; /* Adjust size */
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #FFD700;
+    margin: 10px auto; /* Centered and with space */
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Intro Section */
+main {
+    padding: 40px 20px; /* Add padding for better spacing */
+    max-width: 900px; /* Limit width for content */
+    margin: 0 auto; /* Center content */
+    background: white;
+    border-radius: 10px; /* Smooth corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.intro {
+    margin: 20px 0;
+}
+
+.projects-preview {
+    margin: 40px 0;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.project-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.project-card h3 {
+    margin: 10px 0;
+}
+
+.project-card p {
+    color: #555;
+}
+
+/* Social Links */
+.social-links {
+    position: absolute;
+    top: 20px; /* Adjust spacing */
+    right: 20px;
+    display: flex;
+    gap: 10px; /* Space between icons */
+    z-index: 100; /* Ensure they appear above other elements */
+}
+
+.social-icon {
+    width: 40px; /* Appropriate size for icons */
+    height: 40px;
+    filter: invert(1); /* Make them white if needed */
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1); /* Slight hover effect */
+    opacity: 0.9;
+}
+
+/* Banner Styles */
+.banner {
+    background-color: #555; /* Dark gray background */
+    color: white;
+    padding: 50px 20px; /* Adds space around the content */
+    text-align: center; /* Centers all content */
+    position: relative; /* Allows positioning for social links */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+/* Social Links Positioning */
+.social-links {
+    position: absolute;
+    top: 20px; /* Pushes social icons to the top */
+    right: 20px; /* Aligns icons to the right */
+    display: flex;
+    gap: 15px; /* Adds spacing between icons */
+}
+
+.social-icon {
+    width: 30px; /* Icon size */
+    height: 30px;
+    filter: invert(1); /* Makes icons white */
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+    opacity: 0.9; /* Slight fade effect on hover */
+}
+
+/* Banner Content */
+.banner-content {
+    max-width: 900px; /* Keeps content centered and not too wide */
+    margin: 0 auto; /* Centers the content horizontally */
+}
+
+.banner-content h1 {
+    font-size: 2.5em; /* Adjust font size */
+    margin: 10px 0; /* Adds spacing above and below the text */
+}
+
+.banner-content .highlight {
+    color: #FFD700; /* Gold highlight */
+}
+
+.banner-content .subtitle {
+    font-size: 1.2em; /* Subtitle font size */
+    margin: 15px 0 30px; /* Adds spacing around the subtitle */
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Spacing between buttons */
+    flex-wrap: wrap; /* Ensures buttons wrap on smaller screens */
+}

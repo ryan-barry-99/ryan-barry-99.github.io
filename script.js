@@ -19,3 +19,30 @@ window.addEventListener("click", (event) => {
     contactModal.style.display = "none";
   }
 });
+
+
+// script.js
+document.addEventListener("DOMContentLoaded", () => {
+  // Get the current page's file name (e.g., 'index.html', 'projects.html')
+  const currentPage = window.location.pathname.split("/").pop();
+
+  // Map file names to nav link IDs
+  const navMap = {
+    "index.html": "nav-home",
+    "projects.html": "nav-projects",
+    "about.html": "nav-about",
+    "resume.html": "nav-resume",
+    "contact.html": "nav-contact",
+  };
+
+  // Get the nav link ID for the current page
+  const currentNavId = navMap[currentPage];
+
+  // Add the 'active' class to the current page's nav link
+  if (currentNavId) {
+    const currentNavLink = document.getElementById(currentNavId);
+    if (currentNavLink) {
+      currentNavLink.classList.add("active");
+    }
+  }
+});

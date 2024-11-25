@@ -233,3 +233,52 @@ body {
   footer a:hover {
     color: #FFC300;
   }
+
+ /* Navbar */
+.navbar {
+  background-color: #333; /* Dark background */
+  color: white;
+  padding: 20px; /* Larger padding for more space */
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.8rem; /* Larger logo font size */
+  font-weight: bold;
+  color: #FFD700; /* Gold */
+  text-decoration: none; /* No underline */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px; /* Spaced-out links */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none; /* No underline */
+  color: white;
+  font-size: 1.2rem; /* Larger font size for readability */
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #FFD700;
+}
+
+.nav-links .active {
+  color: #FFD700; /* Highlight active link */
+  border-bottom: 2px solid #FFD700;
+}
