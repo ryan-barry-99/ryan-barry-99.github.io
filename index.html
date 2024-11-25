@@ -74,18 +74,36 @@
       <h2>Contact Me</h2>
       <div class="contact-info">
         <p><strong>Email:</strong> <a href="mailto:ryanbarry.engineering@gmail.com">ryanbarry.engineering@gmail.com</a></p>
-        <p><strong>Phone:</strong> (315) 596-0754</p>
         <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ryanbarry99" target="_blank">linkedin.com/in/ryanbarry99</a></p>
       </div>
     </div>
   </div>
 
-  <footer>
-    <p>© 2024 Ryan Barry | 
-      <a href="https://github.com/ryan-barry-99" target="_blank">GitHub</a> | 
-      <a href="https://www.linkedin.com/in/ryanbarry99" target="_blank">LinkedIn</a>
-    </p>
-  </footer>
+  
+  <!-- Load Footer -->
+  <div id="footer"></div>
+
+  <!-- JavaScript to dynamically load navbar and footer -->
+  <script>
+    // Load the navbar dynamically
+    document.addEventListener("DOMContentLoaded", function () {
+      // Load the navbar content from navbar.html
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((html) => {
+          document.getElementById("navbar").innerHTML = html;
+        })
+        .catch((error) => console.error("Error loading navbar:", error));
+
+      // Load the footer content from footer.html
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((html) => {
+          document.getElementById("footer").innerHTML = html;
+        })
+        .catch((error) => console.error("Error loading footer:", error));
+    });
+  </script>
 
   <script>
     // Modal functionality

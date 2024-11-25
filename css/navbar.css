@@ -2,12 +2,13 @@
 .navbar {
     background-color: #333; /* Dark background */
     color: white;
-    padding: 15px 30px; /* Adjusted padding for better proportions */
+    padding: 20px 30px; /* Padding for better proportions */
     width: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    position: fixed; /* Fixed at the top */
+    position: fixed; /* Fixed at the top on larger screens */
     top: 0;
     z-index: 1000; /* Keeps navbar above all other content */
+    left: 0; /* Make sure it stretches across the full width */
 }
 
 /* Navbar Container */
@@ -35,29 +36,27 @@
     display: flex;
     margin: 0;
     padding: 0;
-    gap: 15px; /* Space between links */
+    gap: 20px; /* Space between links */
 }
 
 .nav-links a {
     text-decoration: none; /* No underline */
     color: white;
-    font-size: 1rem; /* Font size for links */
+    font-size: 1.1rem; /* Slightly smaller font size for links */
     font-weight: bold;
-    padding: 8px 15px; /* Padding for clickability and spacing */
+    padding: 10px 20px; /* Padding for clickability and spacing */
     transition: color 0.3s ease, background-color 0.3s ease;
     position: relative; /* Needed for pseudo-element separators */
-    display: flex;
-    align-items: center; /* Center content vertically */
 }
 
 /* Vertical Separator Lines */
 .nav-links a:not(:last-child)::after {
     content: '';
     position: absolute;
-    right: -8px; /* Adjust spacing between the link and separator */
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
-    height: 60%; /* Adjusted height for cleaner appearance */
+    height: 50%; /* Line height */
     width: 1px;
     background-color: #FFD700; /* Gold vertical line */
 }
@@ -66,20 +65,17 @@
 .nav-links a:hover {
     color: #FFD700; /* Gold color for hover */
     background-color: rgba(255, 215, 0, 0.2); /* Subtle highlight on hover */
-    border-radius: 3px; /* Slightly rounded edges for hover effect */
-}
-
-
-
-/* Ensure Content Below Navbar */
-body {
-    margin: 0;
-    padding-top: 80px; /* Adjust this value based on the height of your navbar */
-    overflow-x: hidden; /* Prevent horizontal scrolling due to fixed navbar */
+    border-radius: 5px; /* Rounded edges for hover effect */
 }
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
+    /* Remove fixed positioning on smaller screens */
+    .navbar {
+        position: static; /* Makes navbar scroll with the page on small screens */
+        background-color: #444; /* Optionally change color for better mobile contrast */
+    }
+
     .navbar-container {
         flex-direction: column;
         align-items: flex-start; /* Align links to the left for smaller screens */
@@ -88,15 +84,22 @@ body {
     .nav-links {
         flex-direction: column;
         gap: 10px; /* Add spacing between links */
+        width: 100%; /* Ensure the links span across the screen */
     }
 
     .nav-links a {
-        font-size: 0.9rem; /* Adjust font size for smaller screens */
-        width: 100%; /* Full-width links for mobile */
-        text-align: left; /* Align text to the left */
+        font-size: 1rem; /* Adjust font size for smaller screens */
+        padding: 15px 20px; /* Increased padding for better clickability */
     }
 
     .nav-links a:not(:last-child)::after {
         display: none; /* Remove vertical lines on mobile */
     }
+}
+
+/* Ensure Content Below Navbar */
+body {
+    margin: 0;
+    padding-top: 80px; /* Adjust this value based on the height of your navbar */
+    overflow-x: hidden; /* Prevent horizontal scrolling due to fixed navbar */
 }
