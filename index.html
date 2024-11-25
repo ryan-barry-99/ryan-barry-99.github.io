@@ -15,11 +15,11 @@
       
       <!-- Title and Navigation -->
       <h1 class="title">Hi, I'm <span class="highlight">Ryan Barry</span></h1>
-      <p class="subtitle">Electrical Engineer | Robotics Enthusiast | AI Explorer</p>
+      <p class="subtitle">Engineer | Robotics Enthusiast | AI Explorer</p>
       <nav>
         <a href="projects.html" class="btn">Projects</a>
         <a href="about.html" class="btn">About Me</a>
-        <a href="contact.html" class="btn">Contact</a>
+        <button id="contactBtn" class="btn">Contact</button>
       </nav>
     </div>
   </header>
@@ -32,33 +32,24 @@
         Explore my work in robotics, AI, and engineering. Check out my projects, read about my background, or get in touch to collaborate!
       </p>
     </section>
-
-    <!-- Projects Section -->
-    <section class="projects-preview">
-      <h2>Highlighted Projects</h2>
-      <div class="project-grid">
-        <div class="project-card">
-          <h3>Robotics Project</h3>
-          <p>Developed an autonomous navigation system for a mobile robot.</p>
-          <a href="https://github.com/ryan-barry-99/project1" class="btn">View on GitHub</a>
-        </div>
-        <div class="project-card">
-          <h3>AI Project</h3>
-          <p>Built a machine learning model for target detection in sonar data.</p>
-          <a href="https://github.com/ryan-barry-99/project2" class="btn">View on GitHub</a>
-        </div>
-        <div class="project-card">
-          <h3>Engineering Analysis</h3>
-          <p>Designed and implemented a control system for adaptive hardware.</p>
-          <a href="https://github.com/ryan-barry-99/project3" class="btn">View on GitHub</a>
-        </div>
-      </div>
-    </section>
   </main>
+
+  <!-- Contact Modal -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>Contact Me</h2>
+      <p>Email: <a href="mailto:ryan.barry@example.com">ryan.barry@example.com</a></p>
+      <p>Phone: (555) 555-5555</p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/ryan-barry" target="_blank">linkedin.com/in/ryan-barry</a></p>
+    </div>
+  </div>
 
   <!-- Footer Section -->
   <footer>
-    <p>© 2024 Ryan Barry | <a href="https://github.com/ryan-barry-99" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/ryanbarry99/" target="_blank">LinkedIn</a></p>
+    <p>© 2024 Ryan Barry | <a href="https://github.com/ryan-barry-99" target="_blank">GitHub</a> | <a href="https://www.linkedin.com" target="_blank">LinkedIn</a></p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
