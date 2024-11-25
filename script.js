@@ -1,21 +1,21 @@
-// Modal Behavior
+// Get modal elements
 const contactModal = document.getElementById("contactModal");
 const contactBtn = document.getElementById("contactBtn");
 const closeModal = document.getElementById("closeModal");
 
-// Open Modal
+// Show the modal when "Contact" button is clicked
 contactBtn.addEventListener("click", () => {
   contactModal.style.display = "flex";
 });
 
-// Close Modal
+// Close the modal when "×" is clicked
 closeModal.addEventListener("click", () => {
   contactModal.style.display = "none";
 });
 
-// Close Modal When Clicking Outside
-window.addEventListener("click", (e) => {
-  if (e.target === contactModal) {
+// Close the modal when clicking outside of it
+window.addEventListener("click", (event) => {
+  if (event.target === contactModal) {
     contactModal.style.display = "none";
   }
 });
