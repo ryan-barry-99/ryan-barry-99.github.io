@@ -10,6 +10,15 @@ body {
     text-align: center;
   }
   
+  h1, h2, h3 {
+    margin: 0.5em 0;
+  }
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  
   /* Social Links */
   .social-links {
     position: absolute;
@@ -57,6 +66,7 @@ body {
     margin: 10px 0 20px;
   }
   
+  /* Buttons */
   .btn {
     background: #FFD700;
     color: #333;
@@ -74,6 +84,63 @@ body {
   .btn:hover {
     background: #FFC300;
     transform: scale(1.1);
+  }
+  
+  /* Profile Image */
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #FFD700;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Main Content */
+  main {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .intro {
+    margin: 20px 0;
+  }
+  
+  .projects-preview {
+    margin: 40px 0;
+  }
+  
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .project-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .project-card h3 {
+    margin: 10px 0;
+  }
+  
+  .project-card p {
+    color: #555;
   }
   
   /* Modal */
@@ -94,9 +161,9 @@ body {
     padding: 30px 20px;
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
     width: 90%;
     max-width: 400px;
-    text-align: center;
   }
   
   .close {
@@ -114,6 +181,7 @@ body {
     color: #007BFF;
   }
   
+  /* Footer */
   footer {
     background: #333;
     color: white;
