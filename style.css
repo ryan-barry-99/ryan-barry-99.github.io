@@ -5,7 +5,7 @@ body {
     padding: 0;
     color: #333;
     line-height: 1.6;
-    background: #f5f5f5;
+    background: #f8f9fa; /* Soft background */
   }
   
   h1, h2, h3 {
@@ -23,6 +23,7 @@ body {
     color: white;
     text-align: center;
     padding: 50px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   }
   
   .header .container {
@@ -66,7 +67,7 @@ body {
   .profile-image {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Makes the image circular */
+    border-radius: 50%;
     border: 3px solid #FFD700;
     margin: 20px auto;
     display: block;
@@ -103,6 +104,12 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
   
   .project-card h3 {
@@ -131,7 +138,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+    background: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
     z-index: 10;
@@ -145,6 +152,18 @@ body {
     width: 80%;
     max-width: 400px;
     text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
   
   .close {
@@ -159,6 +178,15 @@ body {
   
   .close:hover {
     color: #007BFF;
+  }
+  
+  .modal-content a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  .modal-content a:hover {
+    text-decoration: underline;
   }
   
   /* Footer Styles */
