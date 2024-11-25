@@ -30,6 +30,21 @@
     white-space: nowrap; /* Prevents text from breaking into lines */
 }
 
+/* Hamburger Icon (Mobile) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+
 /* Navigation Links */
 .nav-links {
     list-style: none;
@@ -68,6 +83,7 @@
     border-radius: 5px; /* Rounded edges for hover effect */
 }
 
+
 /* Mobile Adjustments */
 @media (max-width: 768px) {
     /* Remove fixed positioning on smaller screens */
@@ -82,9 +98,14 @@
     }
 
     .nav-links {
+        display: none; /* Hide the links by default on mobile */
         flex-direction: column;
         gap: 10px; /* Add spacing between links */
         width: 100%; /* Ensure the links span across the screen */
+    }
+
+    .nav-links.show {
+        display: flex; /* Show the links when the menu is toggled */
     }
 
     .nav-links a {
@@ -94,6 +115,10 @@
 
     .nav-links a:not(:last-child)::after {
         display: none; /* Remove vertical lines on mobile */
+    }
+
+    .hamburger {
+        display: flex; /* Show the hamburger on mobile */
     }
 }
 

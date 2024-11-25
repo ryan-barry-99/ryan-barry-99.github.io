@@ -69,3 +69,14 @@ window.addEventListener('click', (e) => {
       });
     }
   });
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const hamburger = document.getElementById("hamburger-menu");
+    const navLinks = document.getElementById("nav-links");
+  
+    // Toggle the nav links on and off when the hamburger menu is clicked
+    hamburger.addEventListener("click", function() {
+      navLinks.classList.toggle("show");
+    });
+  });
