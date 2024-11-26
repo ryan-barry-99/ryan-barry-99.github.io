@@ -64,7 +64,7 @@
     display: flex;
     margin: 0;
     padding: 0;
-    gap: 20px; /* Space between links */
+    gap: 0px; /* Space between links */
 }
 
 .nav-links a {
@@ -97,43 +97,6 @@
 }
 
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    /* Remove fixed positioning on smaller screens */
-    .navbar {
-        position: static; /* Makes navbar scroll with the page on small screens */
-        background-color: #444; /* Optionally change color for better mobile contrast */
-    }
-
-    .navbar-container {
-        flex-direction: column;
-        align-items: flex-start; /* Align links to the left for smaller screens */
-    }
-
-    .nav-links {
-        display: none; /* Hide the links by default on mobile */
-        flex-direction: column;
-        gap: 10px; /* Add spacing between links */
-        width: 100%; /* Ensure the links span across the screen */
-    }
-
-    .nav-links.show {
-        display: flex; /* Show the links when the menu is toggled */
-    }
-
-    .nav-links a {
-        font-size: 1rem; /* Adjust font size for smaller screens */
-        padding: 15px 20px; /* Increased padding for better clickability */
-    }
-
-    .nav-links a:not(:last-child)::after {
-        display: none; /* Remove vertical lines on mobile */
-    }
-
-    .hamburger {
-        display: flex; /* Show the hamburger on mobile */
-    }
-}
 
 /* Ensure Content Below Navbar */
 body {
