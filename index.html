@@ -1,3 +1,4 @@
+<!-- Your existing index.html or other pages -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 </head>
 <body>
 
-  <div id="navbar"></div>
+  <div id="navbar"></div> <!-- This loads the navbar dynamically -->
 
   <header class="banner">
     <div class="social-links">
@@ -23,7 +24,7 @@
       </a>
     </div>
     <div class="banner-content">
-      <img src="images/profile.jpg" alt="Ryan Barry" class="profile-image">
+      <img src="images/profile.jpg" alt="Ryan Barry" class="header-profile-image">
       <h1>Hi, I'm <span class="highlight">Ryan Barry</span></h1>
       <p class="subtitle">Electrical Engineer | Robotics Enthusiast | AI Explorer</p>
       <div class="buttons">
@@ -79,31 +80,8 @@
     </div>
   </div>
 
-  
   <!-- Load Footer -->
-  <div id="footer"></div>
-
-  <!-- JavaScript to dynamically load navbar and footer -->
-  <script>
-    // Load the navbar dynamically
-    document.addEventListener("DOMContentLoaded", function () {
-      // Load the navbar content from navbar.html
-      fetch("navbar.html")
-        .then((response) => response.text())
-        .then((html) => {
-          document.getElementById("navbar").innerHTML = html;
-        })
-        .catch((error) => console.error("Error loading navbar:", error));
-
-      // Load the footer content from footer.html
-      fetch("footer.html")
-        .then((response) => response.text())
-        .then((html) => {
-          document.getElementById("footer").innerHTML = html;
-        })
-        .catch((error) => console.error("Error loading footer:", error));
-    });
-  </script>
+  <div id="footer"></div> <!-- This will dynamically load the footer -->
 
   <script>
     // Modal functionality
@@ -127,19 +105,27 @@
         modal.style.display = "none";
       }
     });
+
+    // Load the navbar dynamically
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((html) => {
+          document.getElementById("navbar").innerHTML = html;
+        })
+        .catch((error) => console.error("Error loading navbar:", error));
+      
+      // Load the footer dynamically
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((html) => {
+          document.getElementById("footer").innerHTML = html;
+        })
+        .catch((error) => console.error("Error loading footer:", error));
+    });
   </script>
 
-<script>
-  // Load the navbar dynamically
-  document.addEventListener("DOMContentLoaded", function () {
-    fetch("navbar.html")
-      .then((response) => response.text())
-      .then((html) => {
-        document.getElementById("navbar").innerHTML = html;
-      })
-      .catch((error) => console.error("Error loading navbar:", error));
-  });
-</script>
+  <script src="script.js"></script>
 
 </body>
 </html>

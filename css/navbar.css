@@ -9,6 +9,9 @@
     top: 0;
     z-index: 1000; /* Keeps navbar above all other content */
     left: 0; /* Make sure it stretches across the full width */
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Ensure items are aligned vertically */
 }
 
 /* Navbar Container */
@@ -28,6 +31,16 @@
     color: #FFD700; /* Gold color for logo */
     text-decoration: none; /* No underline */
     white-space: nowrap; /* Prevents text from breaking into lines */
+}
+
+/* Profile Image */
+.profile-image {
+    width: 40px; /* Adjust size of the profile image */
+    height: 40px;
+    border-radius: 50%; /* Make it circular */
+    object-fit: cover; /* Ensures the image fits the circle without distortion */
+    margin-right: 15px; /* Add space between profile image and logo */
+    display: block; /* Ensure it displays as a block-level element */
 }
 
 /* Hamburger Icon (Mobile) */

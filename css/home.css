@@ -1,145 +1,186 @@
-/* Background for the Home Page */
-body {
-    background: url('background.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #333;
-    text-align: center;
-}
 
-/* Profile Image */
-.profile-image {
-    width: 120px; /* Adjust size */
-    height: 120px;
+  
+  
+  /* Social Links */
+  .social-links {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-icon {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  
+  /* Header */
+  header {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 50px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center-align all content */
+    position: relative;
+  }
+  
+  .banner-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .header-profile-image {
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    border: 3px solid #FFD700;
-    margin: 10px auto; /* Centered and with space */
+    border: 4px solid #FFD700; /* Gold border */
+    margin: 20px auto;
     display: block;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Intro Section */
-main {
-    padding: 40px 20px; /* Add padding for better spacing */
-    max-width: 900px; /* Limit width for content */
-    margin: 0 auto; /* Center content */
+    object-fit: cover; /* Prevent distortion */
+  }
+  
+  /* Navbar Fixes */
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .navbar-profile {
+    position: relative;
+    margin-right: auto; /* Push profile image to the far left */
+    margin-left: 15px; /* Add space between image and the edge */
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFD700;
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin-left: auto; /* Push navigation to the right */
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #FFD700;
+  }
+  
+  .nav-links .active {
+    color: #FFD700; /* Highlight the active tab */
+  }
+  
+  /* Buttons */
+  .buttons {
+    margin-top: 20px; /* Add spacing above buttons */
+  }
+  
+  .btn {
+    background: #FFD700;
+    color: #333;
+    padding: 12px 25px;
+    margin: 5px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #FFC300;
+    transform: scale(1.1);
+  }
+  
+  /* Main Content */
+  main {
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
     background: white;
-    border-radius: 10px; /* Smooth corners */
+    border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
-
-.intro {
+  }
+  
+  .intro {
     margin: 20px 0;
-}
-
-.projects-preview {
+    text-align: center; /* Center-align intro section */
+  }
+  
+  /* Projects Section */
+  .projects-preview {
     margin: 40px 0;
-}
-
-.project-grid {
+  }
+  
+  .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 0 20px;
-}
-
-.project-card {
+  }
+  
+  .project-card {
     background: #f8f9fa;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
+  }
+  
+  .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.project-card h3 {
+  }
+  
+  .project-card h3 {
     margin: 10px 0;
-}
-
-.project-card p {
+  }
+  
+  .project-card p {
     color: #555;
-}
-
-/* Social Links */
-.social-links {
-    position: absolute;
-    top: 20px; /* Adjust spacing */
-    right: 20px;
-    display: flex;
-    gap: 10px; /* Space between icons */
-    z-index: 100; /* Ensure they appear above other elements */
-}
-
-.social-icon {
-    width: 40px; /* Appropriate size for icons */
-    height: 40px;
-    filter: invert(1); /* Make them white if needed */
-    transition: transform 0.3s, opacity 0.3s;
-}
-
-.social-icon:hover {
-    transform: scale(1.1); /* Slight hover effect */
-    opacity: 0.9;
-}
-
-/* Banner Styles */
-.banner {
-    background-color: #555; /* Dark gray background */
+  }
+  
+  /* Footer */
+  footer {
+    background: #333;
     color: white;
-    padding: 50px 20px; /* Adds space around the content */
-    text-align: center; /* Centers all content */
-    position: relative; /* Allows positioning for social links */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-}
-
-/* Social Links Positioning */
-.social-links {
-    position: absolute;
-    top: 20px; /* Pushes social icons to the top */
-    right: 20px; /* Aligns icons to the right */
-    display: flex;
-    gap: 15px; /* Adds spacing between icons */
-}
-
-.social-icon {
-    width: 30px; /* Icon size */
-    height: 30px;
-    filter: invert(1); /* Makes icons white */
-    transition: transform 0.3s, opacity 0.3s;
-}
-
-.social-icon:hover {
-    transform: scale(1.2); /* Slight zoom on hover */
-    opacity: 0.9; /* Slight fade effect on hover */
-}
-
-/* Banner Content */
-.banner-content {
-    max-width: 900px; /* Keeps content centered and not too wide */
-    margin: 0 auto; /* Centers the content horizontally */
-}
-
-.banner-content h1 {
-    font-size: 2.5em; /* Adjust font size */
-    margin: 10px 0; /* Adds spacing above and below the text */
-}
-
-.banner-content .highlight {
-    color: #FFD700; /* Gold highlight */
-}
-
-.banner-content .subtitle {
-    font-size: 1.2em; /* Subtitle font size */
-    margin: 15px 0 30px; /* Adds spacing around the subtitle */
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* Spacing between buttons */
-    flex-wrap: wrap; /* Ensures buttons wrap on smaller screens */
-}
+    padding: 15px;
+    text-align: center;
+    border-top: 2px solid #FFD700;
+  }
+  
+  footer a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  footer a:hover {
+    color: #FFC300;
+  }

@@ -47,7 +47,7 @@ body {
 
 .pdf-viewer iframe {
     width: 100%; /* Makes the iframe as wide as the container */
-    height: 700px; /* Adjust height for better visibility */
+    height: 750px; /* Adjust height for better visibility */
     border: none; /* Removes the iframe border */
 }
 

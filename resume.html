@@ -26,27 +26,7 @@
   <!-- Load Footer -->
   <div id="footer"></div>
 
-  <!-- JavaScript to dynamically load navbar and footer -->
-  <script>
-    // Load the navbar dynamically
-    document.addEventListener("DOMContentLoaded", function () {
-      // Load the navbar content from navbar.html
-      fetch("navbar.html")
-        .then((response) => response.text())
-        .then((html) => {
-          document.getElementById("navbar").innerHTML = html;
-        })
-        .catch((error) => console.error("Error loading navbar:", error));
 
-      // Load the footer content from footer.html
-      fetch("footer.html")
-        .then((response) => response.text())
-        .then((html) => {
-          document.getElementById("footer").innerHTML = html;
-        })
-        .catch((error) => console.error("Error loading footer:", error));
-    });
-  </script>
 
   <script src="script.js"></script>
 </body>
