@@ -13,45 +13,19 @@
   <!-- Load Navbar -->
   <div id="navbar"></div>
 
-
   <!-- Contact Section -->
-  <header>
+  <div class="container">
     <h1>Contact Me</h1>
     <p>If you'd like to get in touch, feel free to use the information below!</p>
-  </header>
-
-  <main class="contact-container">
-    <section class="contact-info">
+    <div class="contact-info">
       <p><strong>Email:</strong> <a href="mailto:ryanbarry.engineering@gmail.com">ryanbarry.engineering@gmail.com</a></p>
       <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ryanbarry99" target="_blank">linkedin.com/in/ryanbarry99</a></p>
-    </section>
-  </main>
+    </div>
+  </div>
 
   <!-- Load Footer -->
   <div id="footer"></div>
 
-  <!-- JavaScript to dynamically load navbar and footer -->
-  <script>
-    // Load the navbar dynamically
-    document.addEventListener("DOMContentLoaded", function () {
-      // Load the navbar content from navbar.html
-      fetch("navbar.html")
-        .then((response) => response.text())
-        .then((html) => {
-          document.getElementById("navbar").innerHTML = html;
-        })
-        .catch((error) => console.error("Error loading navbar:", error));
-
-      // Load the footer content from footer.html
-      fetch("footer.html")
-        .then((response) => response.text())
-        .then((html) => {
-          document.getElementById("footer").innerHTML = html;
-        })
-        .catch((error) => console.error("Error loading footer:", error));
-    });
-  </script>
-
-  <script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

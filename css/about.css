@@ -1,88 +1,102 @@
-/* about.css */
-
-/* About Page Section */
-.about-section {
-  background-color: #f4f4f9; /* Light background */
-  padding: 40px 20px;
-  text-align: center;
+/* General Styles for About Page */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f9; /* Light background */
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+
+/* Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+/* About Section */
+.about-container p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #555;
 }
 
 /* Education Section */
-.education {
+.education-container {
   margin-top: 40px;
-  text-align: left;
 }
 
-.education h2 {
-  font-size: 2rem;
+.education-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
   color: #333;
+  text-align: center;
 }
 
-/* Degree Block */
+.degree-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
 .degree {
-  margin-bottom: 30px;
+  background: #fff;
   padding: 20px;
-  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .degree h3 {
   font-size: 1.5rem;
+  margin-bottom: 10px;
   color: #333;
-  margin-bottom: 10px; /* Add space below the degree title */
 }
 
 .degree p {
   font-size: 1rem;
   color: #555;
-  margin-bottom: 15px; /* Add space below the description */
+  margin-bottom: 10px;
 }
 
-/* Degree Button */
-.degree a.degree-btn {
+.degree-btn {
   display: inline-block;
   margin-top: 10px;
-  background-color: #FFD700; /* Yellow background for button */
-  color: #333; /* Dark text color for contrast */
   padding: 12px 25px;
-  border-radius: 5px;
+  background: #FFD700;
+  color: #333;
   text-decoration: none;
+  border-radius: 5px;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  text-align: center;
+  transition: background 0.3s ease;
 }
 
-
-
-/* Tau Beta Pi Link */
-.tbp-link {
-  color: #FFD700; /* Gold color for the link */
-  text-decoration: none; /* Remove underline */
-  font-weight: bold; /* Optional: make it bold */
+.degree-btn:hover {
+  background: #FFC300;
 }
 
-.tbp-link:hover {
-  color: #FFC300; /* Slightly darker gold for hover */
-  text-decoration: underline; /* Underline on hover */
-}
-
-/* Additional Info */
+/* Additional Info Section */
 .additional-info {
-  margin-top: 50px;
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
 }
 
 .additional-info h2 {
   font-size: 1.8rem;
+  margin-bottom: 20px;
   color: #333;
+  text-align: center;
 }
 
 .additional-info p {
@@ -90,14 +104,14 @@
   color: #555;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-  .degree a.degree-btn {
-      width: 100%; /* Full-width buttons on smaller screens */
-      text-align: center;
-  }
+/* Tau Beta Pi Link (Blue Hyperlink Style) */
+.tbp-link {
+  color: #007BFF; /* Standard blue hyperlink color */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Optional: keep it bold for emphasis */
+}
 
-  .degree a.tbp-link {
-      font-size: 0.9rem; /* Slightly smaller Tau Beta Pi link on mobile */
-  }
+.tbp-link:hover {
+  color: #0056b3; /* Slightly darker blue on hover */
+  text-decoration: underline; /* Underline on hover for familiarity */
 }

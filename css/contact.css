@@ -1,45 +1,47 @@
-/* General Page Styling */
+/* General Styles */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: #f4f4f9; /* Light gray background */
+    background: #f4f4f9; /* Light background */
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-/* Header Styling */
-header {
-    background-color: #444;
-    color: white;
-    text-align: center;
-    padding: 100px 20px 40px; /* Space for the fixed navbar */
+/* Container Alignment */
+.container {
+    max-width: 900px; /* Controls the width of the container */
+    margin: 80px auto; /* Centers the container on the page and adds top margin */
+    padding: 20px; /* Adds space inside the container for indentation */
+    background: white; /* Optional: Background for contrast */
+    border-radius: 10px; /* Rounded edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for aesthetic */
 }
 
-header h1 {
-    font-size: 2.5rem;
-    margin: 0;
+/* Header Alignment */
+.container h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-align: center; /* Centers the heading */
 }
 
-header p {
-    font-size: 1.1rem;
-    margin-top: 10px;
+.container p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-align: center; /* Centers the paragraph */
 }
 
-/* Contact Information */
-.contact-container {
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+/* Contact Info Styling */
+.contact-info {
+    text-align: center; /* Centers the contact information */
+    font-size: 1.2rem;
+    margin-top: 20px;
 }
 
 .contact-info p {
     margin: 10px 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .contact-info a {
@@ -50,4 +52,25 @@ header p {
 
 .contact-info a:hover {
     text-decoration: underline;
+    color: #0056b3; /* Slightly darker blue on hover */
 }
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 2px solid #FFD700;
+}
+
+footer a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: #FFC300;
+}
+
