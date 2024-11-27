@@ -43,20 +43,6 @@
     display: block; /* Ensure it displays as a block-level element */
 }
 
-/* Hamburger Icon (Mobile) */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-}
-
-.hamburger .bar {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
-}
 
 /* Navigation Links */
 .nav-links {

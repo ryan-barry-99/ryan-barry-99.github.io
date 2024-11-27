@@ -1,0 +1,14 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Ryan Barry
+N:Barry;Ryan;;;
+EMAIL;TYPE=INTERNET:ryanbarry.engineering@gmail.com
+TEL;TYPE=CELL:+13155960754
+ITEM1.URL:https://ryanbarry.me
+ITEM1.X-ABLabel:Portfolio
+ITEM2.URL:https://github.com/ryan-barry-99
+ITEM2.X-ABLabel:GitHub
+ITEM3.URL:https://linkedin.com/in/ryanbarry99
+ITEM3.X-ABLabel:LinkedIn
+PHOTO;VALUE=URI:https://ryanbarry.me/images/profile.jpg
+END:VCARD

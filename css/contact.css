@@ -3,38 +3,82 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: #f4f4f9; /* Light background */
+    background: #f4f4f9;
     color: #333;
     line-height: 1.6;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden;
 }
 
 /* Container Alignment */
 .container {
-    max-width: 900px; /* Controls the width of the container */
-    margin: 80px auto; /* Centers the container on the page and adds top margin */
-    padding: 20px; /* Adds space inside the container for indentation */
-    background: white; /* Optional: Background for contrast */
-    border-radius: 10px; /* Rounded edges */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for aesthetic */
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Header Alignment */
 .container h1 {
     font-size: 2rem;
     margin-bottom: 10px;
-    text-align: center; /* Centers the heading */
+    text-align: center;
 }
 
 .container p {
     font-size: 1rem;
     margin-bottom: 20px;
-    text-align: center; /* Centers the paragraph */
+    text-align: center;
+}
+
+/* Contact Form Styling */
+.contact-form {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form button {
+    background: #FFD700;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+    background: #FFC300;
 }
 
 /* Contact Info Styling */
 .contact-info {
-    text-align: center; /* Centers the contact information */
+    text-align: center;
     font-size: 1.2rem;
     margin-top: 20px;
 }
@@ -52,25 +96,5 @@ body {
 
 .contact-info a:hover {
     text-decoration: underline;
-    color: #0056b3; /* Slightly darker blue on hover */
+    color: #0056b3;
 }
-
-/* Footer */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    border-top: 2px solid #FFD700;
-}
-
-footer a {
-    color: #FFD700;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-footer a:hover {
-    color: #FFC300;
-}
-
