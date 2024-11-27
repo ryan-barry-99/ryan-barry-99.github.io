@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Air Hockey Robot Project by Ryan Barry">
+  <title>Air Hockey Robot - Ryan Barry</title>
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/air-hockey-robot.css">
+</head>
+<body>
+  <div id="navbar"></div> <!-- Load navbar dynamically -->
+
+  <main class="container">
+    <header class="project-header">
+      <h1>Air Hockey Robot</h1>
+      <p>A cutting-edge robotics project designed for dynamic air hockey play using advanced kinematics and AI.</p>
+    </header>
+
+    <!-- Sections -->
+    <section>
+      <h2>Dataset Creation</h2>
+      <p>
+        <ul>
+          <li>Collected 26,627 images during gameplay; labeled 443 images (64 challenging).</li>
+          <li>Processed images for puck and line detection using YOLOv8; cleaned to 15,763 images.</li>
+          <li>Augmented dataset by horizontally flipping the table for a total of 31,525 images.</li>
+        </ul>
+      </p>
+    </section>
+
+    <section>
+      <h2>YOLOv8 Model</h2>
+      <p>Used YOLOv8 to label bounding boxes for the puck and black lines on the table, forming the foundation for physics calculations and predictions.</p>
+    </section>
+
+    <section>
+      <h2>Physics Model</h2>
+      <p>Developed a physics-based predictive model to determine puck trajectory and reflection points.</p>
+      <pre>
+If dx ≈ 0: Yc = 0.5, Θ = 0
+elif dx > 0:
+    Calculate bounce at Y = 1; reverse dy
+else:
+    Calculate bounce at Y = 0; reverse dy
+      </pre>
+    </section>
+
+    <section>
+      <h2>LSTM Model</h2>
+      <p>
+        Leveraged a Long Short-Term Memory (LSTM) neural network to predict puck trajectory based on dynamic movement:
+        <ul>
+          <li>MSE: 0.0573</li>
+          <li>Missed 25/135 shots</li>
+        </ul>
+      </p>
+    </section>
+
+    <section>
+      <h2>Hardware</h2>
+      <ul>
+        <li>Camera: OAK-D at 60 FPS</li>
+        <li>GPU: Nvidia RTX 3080 Ti Laptop GPU</li>
+        <li>Inference Speed: 57 FPS (video rendering)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>The Robot</h2>
+      <ul>
+        <li>3 DoF planar robot</li>
+        <li>SSC-32U PWM servo driver</li>
+        <li>Custom kinematics library using Denavit–Hartenberg parameters</li>
+        <li>Inverse kinematics lookup table for rapid position adjustments</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Demos</h2>
+      <ul>
+        <li><a href="https://docs.google.com/file/d/1HDAbP77u3fludFNDj-XwZXk3Gnb-NXVu/preview" target="_blank">Dataset Creation</a></li>
+        <li><a href="https://docs.google.com/file/d/1HC-AMoWQ90B_BNsWbZ2sHpAGyulBxc_a/preview" target="_blank">Robot Gameplay</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <div id="footer"></div> <!-- Load footer dynamically -->
+
+  <script src="/assets/js/script.js"></script>
+</body>
+</html>

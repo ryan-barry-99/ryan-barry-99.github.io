@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ryan Barry - Contact Page">
+  <title>Ryan Barry - Contact</title>
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/navbar.css">
+  <link rel="stylesheet" href="/assets/css/contact.css">
+</head>
+<body>
+  <!-- Load Navbar -->
+  <div id="navbar"></div>
+
+  
+
+  <!-- Contact Section -->
+  <div class="container">
+    <!-- Page Header -->
+    <header class="page-header">
+      <h1>Contact Me</h1>
+      <p>I'd love to hear from you! Reach out using the form below.</p>
+    </header>
+    <!-- Contact Form -->
+    <section class="contact-container">
+      <form id="contact-form" class="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="subject">Subject (optional):</label>
+        <input type="text" id="subject" name="subject" placeholder="Enter a subject (optional)">
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+
+      <!-- Success and Error Messages -->
+      <div id="form-success" style="display: none; margin-top: 20px; color: green;">
+        <p>Thank you! Your message has been sent successfully.</p>
+      </div>
+      <div id="form-error" style="display: none; margin-top: 20px; color: red;">
+        <p>Oops! Something went wrong. Please try again later.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Load Footer -->
+  <div id="footer"></div>
+
+  <script src="/assets/js/script.js"></script>
+  <script src="/assets/js/contact.js"></script>
+</body>
+</html>

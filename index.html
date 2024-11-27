@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Ryan Barry's Portfolio - Engineer and Robotics Enthusiast">
   <title>Ryan Barry - Portfolio</title>
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="/assets/css/index.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/navbar.css">
 </head>
 <body>
 
@@ -16,21 +16,21 @@
   <header class="banner">
     <div class="social-links">
       <a href="https://github.com/ryan-barry-99" target="_blank">
-        <img src="images/github-logo.png" alt="GitHub" class="social-icon">
+        <img src="/assets/images/github-logo.png" alt="GitHub" class="social-icon">
       </a>
       <a href="https://linkedin.com/in/ryanbarry99" target="_blank">
-        <img src="images/linkedin-logo.png" alt="LinkedIn" class="social-icon">
+        <img src="/assets/images/linkedin-logo.png" alt="LinkedIn" class="social-icon">
       </a>
     </div>
     <div class="banner-content">
-      <img src="images/profile.jpg" alt="Ryan Barry" class="header-profile-image">
+      <img src="/assets/images/profile.jpg" alt="Ryan Barry" class="header-profile-image">
       <h1>Hi, I'm <span class="highlight">Ryan Barry</span></h1>
       <p class="subtitle">Electrical Engineer | Robotics Enthusiast | AI Explorer</p>
       <div class="buttons">
-        <a href="projects.html" class="btn">Projects</a>
-        <a href="about.html" class="btn">About Me</a>
-        <a href="resume.html" class="btn">Resume</a>
-        <button id="contactBtn" class="btn">Contact</button>
+        <a href="/projects" class="btn">Projects</a>
+        <a href="/about" class="btn">About Me</a>
+        <a href="/resume" class="btn">Resume</a>
+        <button id="contactBtn" class="btn">Contact Info</button>
       </div>
     </div>
   </header>
@@ -113,7 +113,7 @@
 
     // Load the navbar dynamically
     document.addEventListener("DOMContentLoaded", function () {
-      fetch("navbar.html")
+      fetch("/navbar")
         .then((response) => response.text())
         .then((html) => {
           document.getElementById("navbar").innerHTML = html;
@@ -121,7 +121,7 @@
         .catch((error) => console.error("Error loading navbar:", error));
       
       // Load the footer dynamically
-      fetch("footer.html")
+      fetch("/footer")
         .then((response) => response.text())
         .then((html) => {
           document.getElementById("footer").innerHTML = html;
@@ -130,7 +130,7 @@
     });
   </script>
 
-  <script src="script.js"></script>
+  <script src="/assets/js/script.js"></script>
 
 </body>
 </html>

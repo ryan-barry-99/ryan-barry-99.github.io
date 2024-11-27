@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Load the navbar content from navbar.html
-  fetch("navbar.html")
+  fetch("/navbar")
     .then((response) => response.text())
     .then((html) => {
       document.getElementById("navbar").innerHTML = html;
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .catch((error) => console.error("Error loading navbar:", error));
 
   // Load the footer content from footer.html
-  fetch("footer.html")
+  fetch("/footer")
     .then((response) => response.text())
     .then((html) => {
       document.getElementById("footer").innerHTML = html;
@@ -48,11 +48,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Map file names to nav link IDs
   const navMap = {
-    "index.html": "nav-home",
-    "projects.html": "nav-projects",
-    "about.html": "nav-about",
-    "resume.html": "nav-resume",
-    "contact.html": "nav-contact"
+    "/index": "nav-home",
+    "/projects": "nav-projects",
+    "/about": "nav-about",
+    "/resume": "nav-resume",
+    "/contact": "nav-contact"
   };
 
   // Highlight the active navigation link
