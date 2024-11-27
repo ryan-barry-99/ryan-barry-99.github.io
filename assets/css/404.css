@@ -1,0 +1,42 @@
+/* 404 Error Page Styles */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f9;
+    color: #333;
+  }
+  
+  .error-section {
+    text-align: center;
+    margin: 100px auto;
+  }
+  
+  .error-section h1 {
+    font-size: 6rem;
+    color: #ff4757;
+    margin: 0;
+  }
+  
+  .error-section p {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    color: #555;
+  }
+  
+  .error-section .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  
+  .error-section .btn:hover {
+    background: #0056b3;
+  }
