@@ -1,0 +1,85 @@
+/* General Styling for the Robot Perception Page */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+
+
+
+/* Assignment Grid */
+.assignments {
+    display: flex;
+    flex-direction: column; /* Stack assignments vertically */
+    gap: 20px; /* Add space between assignments */
+}
+
+/* Individual Assignment Cards */
+.assignment {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.assignment:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.assignment h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.assignment p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Buttons */
+.assignment .btn {
+    background: #FFD700;
+    color: #333;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.assignment .btn:hover {
+    background: #FFC300;
+}
+
+/* Specific Styling for Object Tracking Card */
+.gif {
+    display: flex;
+    align-items: center; /* Vertically align content */
+    gap: 20px; /* Add space between text and GIF */
+}
+
+/* Content Section */
+.gif .assignment-content {
+    flex: 1; /* Allow the content to take up available space */
+}
+
+/* GIF Section */
+.gif .assignment-gif {
+    flex-shrink: 0; /* Prevent the GIF from shrinking */
+    max-width: 500px; /* Set a maximum width for the GIF */
+}
+
+.gif .assignment-gif img {
+    width: 100%; /* Ensure the GIF is responsive */
+    border-radius: 8px; /* Add rounded corners to the GIF */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better appearance */
+}

@@ -60,14 +60,14 @@ body {
 
 .degree h3 {
   font-size: 1.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: #333;
 }
 
 .degree p {
   font-size: 1rem;
   color: #555;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .degree-btn {
@@ -114,4 +114,35 @@ body {
 .tbp-link:hover {
   color: #0056b3; /* Slightly darker blue on hover */
   text-decoration: underline; /* Underline on hover for familiarity */
+}
+
+/* Relevant Courses Section */
+.relevant-courses {
+  margin-top: 60px; /* Add space before the section */
+}
+
+.relevant-courses h2 {
+  font-size: 1.8rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.relevant-courses ul {
+  list-style: none;
+  padding: 0;
+}
+
+.relevant-courses li {
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.relevant-courses .note {
+  font-size: 0.9rem;
+  color: #777; /* Lighter gray for subtle contrast */
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }

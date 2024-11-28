@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const navMap = {
     "/index": "nav-home",
     "/projects": "nav-projects",
-    "/about": "nav-about",
+    "/about-education": "nav-about",
     "/resume": "nav-resume",
     "/contact": "nav-contact"
   };

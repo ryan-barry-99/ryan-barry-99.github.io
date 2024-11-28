@@ -8,32 +8,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
-
-/* Container */
-.container {
-  max-width: 1200px;
-  margin: 80px auto 40px; /* Adds top margin for consistent spacing */
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
-/* Page Header */
-.page-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.page-header h1 {
-  font-size: 2rem;
-  color: #ffffff;
-}
-
-.page-header p {
-  font-size: 1.2rem;
-  color: #ffffff;
-}
+  
 
 /* Projects Section */
 .projects-container {
