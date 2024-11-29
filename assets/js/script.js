@@ -74,3 +74,24 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   }
 });
+
+
+// Collapsible sections functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const collapsibleHeaders = document.querySelectorAll(".collapsible-header");
+
+  collapsibleHeaders.forEach(header => {
+    header.addEventListener("click", () => {
+      // Toggle the "active" class for the clicked header
+      header.classList.toggle("active");
+
+      // Toggle the visibility of the content
+      const content = header.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  });
+});

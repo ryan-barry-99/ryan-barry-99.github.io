@@ -12,81 +12,120 @@
   <div id="navbar"></div> <!-- Load navbar dynamically -->
 
   <main class="container">
-    <header class="project-header">
+    <header class="page-header">
       <h1>Air Hockey Robot</h1>
-      <p>A cutting-edge robotics project designed for dynamic air hockey play using advanced kinematics and AI.</p>
+      <p>A custom arm robot designed to play Air Hockey against a human opponent via object detection and tracking from an overhead camera.</p>
     </header>
 
-    <!-- Sections -->
-    <section>
-      <h2>Dataset Creation</h2>
-      <p>
+    
+    <div class="robot-video">
+      <h2>Robot in Action</h2>
+      <video controls width="640" height="360">
+        <source src="/assets/videos/air-hockey-play.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p>Here the robot defends its goal.</p>
+      <p>The reason it misses a puck on the right is because we had the workspace limits intentionally narrower than the table to avoid robot suicide :)</p>
+    </div>
+
+    <!-- Collapsible Sections -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Dataset Creation</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
         <ul>
           <li>Collected 26,627 images during gameplay; labeled 443 images (64 challenging).</li>
           <li>Processed images for puck and line detection using YOLOv8; cleaned to 15,763 images.</li>
           <li>Augmented dataset by horizontally flipping the table for a total of 31,525 images.</li>
         </ul>
-      </p>
+      </div>
     </section>
 
-    <section>
-      <h2>YOLOv8 Model</h2>
-      <p>Used YOLOv8 to label bounding boxes for the puck and black lines on the table, forming the foundation for physics calculations and predictions.</p>
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>YOLOv8 Model</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <p>Used YOLOv8 to label bounding boxes for the puck and black lines on the table, forming the foundation for physics calculations and predictions.</p>
+      </div>
     </section>
 
-    <section>
-      <h2>Physics Model</h2>
-      <p>Developed a physics-based predictive model to determine puck trajectory and reflection points.</p>
-      <pre>
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Physics Model</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <p>Developed a physics-based predictive model to determine puck trajectory and reflection points:</p>
+        <pre>
 If dx ≈ 0: Yc = 0.5, Θ = 0
 elif dx > 0:
     Calculate bounce at Y = 1; reverse dy
 else:
     Calculate bounce at Y = 0; reverse dy
-      </pre>
+        </pre>
+      </div>
     </section>
 
-    <section>
-      <h2>LSTM Model</h2>
-      <p>
-        Leveraged a Long Short-Term Memory (LSTM) neural network to predict puck trajectory based on dynamic movement:
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>LSTM Model</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <p>
+          Leveraged a Long Short-Term Memory (LSTM) neural network to predict puck trajectory based on dynamic movement:
+        </p>
         <ul>
-          <li>MSE: 0.0573</li>
-          <li>Missed 25/135 shots</li>
+          <li><strong>MSE:</strong> 0.0573</li>
+          <li><strong>Missed Shots:</strong> 25/135</li>
         </ul>
-      </p>
+      </div>
     </section>
 
-    <section>
-      <h2>Hardware</h2>
-      <ul>
-        <li>Camera: OAK-D at 60 FPS</li>
-        <li>GPU: Nvidia RTX 3080 Ti Laptop GPU</li>
-        <li>Inference Speed: 57 FPS (video rendering)</li>
-      </ul>
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>The Robot</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <ul>
+          <li>3 DoF planar robot</li>
+          <li>SSC-32U PWM servo driver</li>
+          <li>Custom kinematics library using Denavit–Hartenberg parameters</li>
+          <li>Inverse kinematics lookup table for rapid position adjustments</li>
+        </ul>
+        <div class="robot-video">
+          <h3>Testing Inverse Kinematics Solutions</h3>
+          <p>In this video, the robot performs IK solutions to adjust its end effector to specific positions, demonstrating its precision and accuracy. The tape measure in front of the robot reflects the width of the table's playing surface.</p>
+          <video controls width="640" height="360">
+            <source src="/assets/videos/air-hockey-ik.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>The Robot</h2>
-      <ul>
-        <li>3 DoF planar robot</li>
-        <li>SSC-32U PWM servo driver</li>
-        <li>Custom kinematics library using Denavit–Hartenberg parameters</li>
-        <li>Inverse kinematics lookup table for rapid position adjustments</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Demos</h2>
-      <ul>
-        <li><a href="https://docs.google.com/file/d/1HDAbP77u3fludFNDj-XwZXk3Gnb-NXVu/preview" target="_blank">Dataset Creation</a></li>
-        <li><a href="https://docs.google.com/file/d/1HC-AMoWQ90B_BNsWbZ2sHpAGyulBxc_a/preview" target="_blank">Robot Gameplay</a></li>
-      </ul>
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Demos</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <ul>
+          <li><a href="https://docs.google.com/file/d/1HDAbP77u3fludFNDj-XwZXk3Gnb-NXVu/preview" target="_blank">Dataset Creation</a></li>
+          <li><a href="https://docs.google.com/file/d/1HC-AMoWQ90B_BNsWbZ2sHpAGyulBxc_a/preview" target="_blank">Robot Gameplay</a></li>
+        </ul>
+      </div>
     </section>
   </main>
 
   <div id="footer"></div> <!-- Load footer dynamically -->
 
   <script src="/assets/js/script.js"></script>
+  <script src="/assets/js/collapsible.js"></script>
 </body>
 </html>
