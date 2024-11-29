@@ -17,7 +17,6 @@
       <p>A custom arm robot designed to play Air Hockey against a human opponent via object detection and tracking from an overhead camera.</p>
     </header>
 
-    
     <div class="robot-video">
       <h2>Robot in Action</h2>
       <video controls width="640" height="360">
@@ -28,97 +27,168 @@
       <p>The reason it misses a puck on the right is because we had the workspace limits intentionally narrower than the table to avoid robot suicide :)</p>
     </div>
 
-    <!-- Collapsible Sections -->
+    <!-- Overview -->
     <section class="collapsible">
       <button class="collapsible-header">
-        <span>Dataset Creation</span>
+        <span>Overview</span>
         <span class="dropdown-icon">&#9656;</span>
       </button>
       <div class="collapsible-content">
-        <ul>
-          <li>Collected 26,627 images during gameplay; labeled 443 images (64 challenging).</li>
-          <li>Processed images for puck and line detection using YOLOv8; cleaned to 15,763 images.</li>
-          <li>Augmented dataset by horizontally flipping the table for a total of 31,525 images.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="collapsible">
-      <button class="collapsible-header">
-        <span>YOLOv8 Model</span>
-        <span class="dropdown-icon">&#9656;</span>
-      </button>
-      <div class="collapsible-content">
-        <p>Used YOLOv8 to label bounding boxes for the puck and black lines on the table, forming the foundation for physics calculations and predictions.</p>
-      </div>
-    </section>
-
-    <section class="collapsible">
-      <button class="collapsible-header">
-        <span>Physics Model</span>
-        <span class="dropdown-icon">&#9656;</span>
-      </button>
-      <div class="collapsible-content">
-        <p>Developed a physics-based predictive model to determine puck trajectory and reflection points:</p>
-        <pre>
-If dx ≈ 0: Yc = 0.5, Θ = 0
-elif dx > 0:
-    Calculate bounce at Y = 1; reverse dy
-else:
-    Calculate bounce at Y = 0; reverse dy
-        </pre>
-      </div>
-    </section>
-
-    <section class="collapsible">
-      <button class="collapsible-header">
-        <span>LSTM Model</span>
-        <span class="dropdown-icon">&#9656;</span>
-      </button>
-      <div class="collapsible-content">
+        <h2>Overview</h2>
         <p>
-          Leveraged a Long Short-Term Memory (LSTM) neural network to predict puck trajectory based on dynamic movement:
+          This was the final project for my robot perception course, completed with fellow Electrical Engineering major 
+          <a href="https://www.linkedin.com/in/quinn-leydon/" target="_blank" style="color: #0077b5; text-decoration: none; font-weight: bold;">Quinn Leydon</a>. 
+          It involved designing an arm robot to play air hockey against a human via real-time detection and trajectory estimation of the puck via an overhead camera.
         </p>
-        <ul>
-          <li><strong>MSE:</strong> 0.0573</li>
-          <li><strong>Missed Shots:</strong> 25/135</li>
-        </ul>
+        <p>
+          To complete this project, I designed a custom 3 degree-of-freedom arm with SolidWorks and then assembled it using a combination of 3D printed parts and DIN rail.
+        </p>
+        <p>
+          We collected a large dataset of images of the puck on the table, and used a semi-supervised learning approach to trajectory prediction, labeling a subset of them, training a detection model, and using that model to label the remaining data.
+        </p>
       </div>
     </section>
 
+    <!-- Detection -->
     <section class="collapsible">
       <button class="collapsible-header">
-        <span>The Robot</span>
+        <span>Puck Detection</span>
         <span class="dropdown-icon">&#9656;</span>
       </button>
       <div class="collapsible-content">
+        <h2>Dataset and Detection Model</h2>
         <ul>
-          <li>3 DoF planar robot</li>
-          <li>SSC-32U PWM servo driver</li>
-          <li>Custom kinematics library using Denavit–Hartenberg parameters</li>
-          <li>Inverse kinematics lookup table for rapid position adjustments</li>
+          <li>Collected 26,627 images during live gameplay; labeled 443 images (64 notably challenging where the red puck overlaps the orange tiger).</li>
+          <li>Trained a custom YOLOv8 model on the labeled images.</li>
+          <ul>
+            <li>Achieved an excellent F1 score with a strong balance between precision and recall.</li>
+            <li>Used for real-time detection and localization for the puck and key points on the table.</li>
+            <li>Used to label remaining unlabeled data.</li>
+            <li>For detailed analysis, including full precision-recall curves and insights into false detections when the robot is involved, refer to our paper at the bottom of the page.</li>
+          </ul>
+          <li>Larger dataset cleaned of frames where the puck was not in motion to 15,763 images.</li>
+          <li>Augmented dataset by horizontally flipping the table for a total of 31,525 images, doubling the number of trajectories with puck motion towards the robot.</li>
         </ul>
-        <div class="robot-video">
-          <h3>Testing Inverse Kinematics Solutions</h3>
-          <p>In this video, the robot performs IK solutions to adjust its end effector to specific positions, demonstrating its precision and accuracy. The tape measure in front of the robot reflects the width of the table's playing surface.</p>
-          <video controls width="640" height="360">
-            <source src="/assets/videos/air-hockey-ik.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <!-- Image Section -->
+        <div class="image-container">
+          <img src="/assets/images/robot-perception/air-hockey-robot/data-collection.png" alt="Data Collection" class="air-hockey-image">
+        </div>
+        <div class="image-container">
+          <img src="/assets/images/robot-perception/air-hockey-robot/puck-detection.png" alt="Puck Detection" class="air-hockey-image">
         </div>
       </div>
     </section>
 
+    <!-- Trajectory Prediction -->
     <section class="collapsible">
       <button class="collapsible-header">
-        <span>Demos</span>
+        <span>Puck Trajectory Prediction</span>
         <span class="dropdown-icon">&#9656;</span>
       </button>
       <div class="collapsible-content">
+        <h2>Trajectory Prediction</h2>
+        <p><strong>Goal:</strong> Determine where the robot must meet the puck on the black line.</p>
+        <div class="image-container">
+          <img src="/assets/images/robot-perception/air-hockey-robot/trajectory-estimation.png" alt="Trajectory Projection" class="air-hockey-image">
+        </div>
+        <h3>Methodology</h3>
         <ul>
-          <li><a href="https://docs.google.com/file/d/1HDAbP77u3fludFNDj-XwZXk3Gnb-NXVu/preview" target="_blank">Dataset Creation</a></li>
-          <li><a href="https://docs.google.com/file/d/1HC-AMoWQ90B_BNsWbZ2sHpAGyulBxc_a/preview" target="_blank">Robot Gameplay</a></li>
+          <li><strong>Physics Model</strong></li>
+          <ul>
+            <li>Assume linear motion of the puck.</li>
+            <li>Snell’s Law was adapted to predict puck reflection angles, accounting for table geometry.</li>
+          </ul>
+          <li><strong>LSTM Model</strong></li>
+          <ul>
+            <li>Trained on the augmented dataset of 31,525 images.</li>
+            <li>Used to predict the puck's trajectory.</li>
+            <li>Idea is to use the LSTM's memory bandwidth to learn some nonlinearities of the table.</li>
+          </ul>
         </ul>
+        <h3>Results</h3>
+        <ul>
+          <li>In simulated results, both models were able to accurately predict a location in line within our 4 inch margin of error of the ground truth on over 80% of the tested trajectories.</li>
+          <li>The physics model was more accurate in testing than the LSTM model.</li>
+          <li>The physics model allowed the robot to consistently meet the puck.</li>
+          <li>Hardware failures with the 3D printed parts prevented us from fully realizing the LSTM model on the robot, though it did show signs of promise.</li>
+        </ul>
+        <p><strong>Hypothesis:</strong>A physics-informed LSTM may be able to improve accuracy over a strictly linear physics model if it can learn some higher order imperfections of the table.
+          Further testing could include developing a model that takes in both the trajectory as well as a prediction from the physics model to improve accuracy in the LSTM's output.</p>
+      </div>
+    </section>
+
+    <!-- Hardware -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Hardware</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Hardware Overview</h2>
+        <ul>
+          <li><strong>Camera:</strong> RGB sensor on an OAK-D camera at 60 FPS</li>
+          <li><strong>GPU:</strong> Nvidia RTX 3080 Ti Laptop GPU</li>
+          <li><strong>Inference Speed (Detection + Trajectory Estimation):</strong> 57 FPS (without video rendering), 33 FPS (with video rendering)</li>
+        </ul>
+        <p><strong>Analysis:</strong> Only bottleneck on the system was the camera's FPS.</p>
+      </div>
+    </section>
+
+    <!-- Robot -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Robot</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Robot Design Overview</h2>
+        <ul>
+          <li>3 DoF planar robot</li>
+          <li>SSC-32U PWM servo driver</li>
+          <li>Custom kinematics library using Denavit–Hartenberg parameters.</li>
+          <ul>
+            <li>Inverse kinematics lookup table for rapid position adjustments.</li>
+            <li>Refer to our paper for IK derivation for this robot configuration.</li>
+          </ul>
+        </ul>
+        <h3 class="centered-heading">Robot CAD Model</h3>
+        <div class="image-container">
+          <img src="/assets/images/robot-perception/air-hockey-robot/robot-cad.png" alt="Robot CAD" class="air-hockey-image">
+        </div>
+        <section class="collapsible inner-collapsible">
+          <button class="collapsible-header">
+            <span>Inverse Kinematics in Action</span>
+            <span class="dropdown-icon">&#9656;</span>
+          </button>
+          <div class="collapsible-content">
+            <div class="robot-video">
+              <h3>Testing Inverse Kinematics Solutions</h3>
+              <p>In this video, the robot performs IK solutions to adjust its end effector to specific positions, demonstrating its precision and accuracy. The tape measure in front of the robot reflects the width of the table's playing surface.</p>
+              <video controls width="640" height="360">
+                <source src="/assets/videos/air-hockey-ik.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Research Paper -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Research Paper</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <iframe 
+          src="/assets/files/Trajectory_Estimation_Approach_To_Robotic_Air_Hockey_Opponent.pdf" 
+          width="100%" 
+          height="600px" 
+          style="border: none;">
+          Your browser does not support embedded PDFs. 
+          <a href="/assets/files/Trajectory_Estimation_Approach_To_Robotic_Air_Hockey_Opponent.pdf" target="_blank">Download the PDF</a>
+        </iframe>
       </div>
     </section>
   </main>
@@ -126,6 +196,5 @@ else:
   <div id="footer"></div> <!-- Load footer dynamically -->
 
   <script src="/assets/js/script.js"></script>
-  <script src="/assets/js/collapsible.js"></script>
 </body>
 </html>

@@ -255,3 +255,9 @@ body {
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
+
+.centered-heading {
+  text-align: center; /* Centers the text horizontally */
+  margin: 20px 0; /* Optional: Add spacing around the heading */
+  font-size: 1.5rem; /* Adjust font size if needed */
+}
