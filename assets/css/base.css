@@ -2,7 +2,7 @@
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
-  padding-top: 80px; /* Adjust for navbar height */
+  padding-top: 70px; /* Adjust for navbar height */
   line-height: 1.6;
   box-sizing: border-box; /* Include padding and border in total width/height */
 }
@@ -14,6 +14,166 @@ h1, h2, h3 {
 a {
   text-decoration: none;
   color: white;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #333; /* Dark background */
+  color: white;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center; /* Vertically centers all items */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar Container */
+.navbar-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+/* Hamburger Menu - Left-Aligned */
+.hamburger-menu {
+  height: 50px;
+  width: 40px;
+  margin-right: auto; /* Push to the left */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+}
+
+.hamburger-menu span {
+  height: 5px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 25px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: .3s ease;
+}
+.hamburger-menu span:nth-child(1) {
+  top: 25%;
+}
+.hamburger-menu span:nth-child(3) {
+  top: 75%;
+}
+
+/* Navbar Center: Horizontal Layout */
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center; /* Align items vertically */
+  gap: 10px; /* Add spacing between profile picture and name */
+}
+
+.navbar-center img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.navbar-center h1 {
+  font-size: 2rem;
+  color: white;
+  margin: 0;
+  text-align: left; /* Align name text properly */
+  font-weight: bold;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Fully off-screen */
+  width: 200px; /* Sidebar width */
+  height: 100%;
+  background-color: #444; /* Dark background for the menu */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  transition: transform 0.3s ease, left 0.3s ease; /* Smooth slide-in transition */
+  transform: translateX(-300px); /* Move off-screen horizontally */
+}
+
+.sidebar.show {
+  transform: translateX(300px); /* Slide the sidebar fully into view */
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 15px; /* Reduce padding to control underline length */
+  width: auto; /* Let the width adjust to the content */
+  border-bottom: 1px solid #555; /* Keep border */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-align: left; /* Align text to the left */
+  display: inline-block; /* Adjust to fit the text width */
+}
+
+.sidebar a:last-child {
+  border-bottom: none; /* Remove border for the last link */
+}
+
+.sidebar a:hover {
+  background-color: rgba(255, 215, 0, 0.2);
+  color: #FFD700;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1999; /* Below the sidebar but above the content */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* General Page Header */
+.page-header {
+  background-color: #444;
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  margin-top: 10px;
 }
 
 /* Buttons */
@@ -55,209 +215,18 @@ footer a:hover {
   color: #FFC300;
 }
 
-/* Modal Background */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Ensure it appears above other content */
-}
-
-/* Modal Content Box */
-.modal-content {
-  background: white;
-  padding: 30px 20px;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
-  position: relative;
-  animation: fadeIn 0.3s ease-in-out; /* Smooth appearance animation */
-}
-
-/* Close Button */
-.close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 1.5rem;
-  color: #555;
-  cursor: pointer;
-  font-weight: bold;
-  transition: color 0.2s ease;
-}
-
-.close:hover {
-  color: #ff0000; /* Red hover effect */
-}
-
-/* Contact Info Styling */
-.contact-info p {
-  margin: 10px 0;
-  font-size: 1.1em;
-  color: #555;
-}
-
-.contact-info a {
-  color: #007BFF;
-  text-decoration: none;
-}
-
-.contact-info a2 {
-  color: #555;
-  text-decoration: none;
-}
-
-.contact-info a:hover {
-  text-decoration: underline;
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* General Page Header */
-.page-header {
-  background-color: #444; /* Dark gray background */
-  color: white; /* White text */
-  text-align: center; /* Center-align text */
-  padding: 50px 20px; /* Padding for spacing */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
-}
-
-/* Page Header Titles */
-.page-header h1 {
-  font-size: 2.5rem;
-  margin: 0;
-}
-
-.page-header p {
-  font-size: 1.2rem;
-  margin-top: 10px;
-}
-
-/* Navbar */
-.navbar {
-  background-color: #333; /* Dark background */
-  color: white;
-  padding: 20px 30px; /* Padding for better proportions */
-  width: 100%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  position: fixed; /* Fixed at the top on larger screens */
-  top: 0;
-  z-index: 1000; /* Keeps navbar above all other content */
-  left: 0; /* Make sure it stretches across the full width */
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* Ensure items are aligned vertically */
-}
-
-/* Navbar Container */
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px; /* Add padding for spacing */
-}
-
-/* Logo */
-.logo {
-  font-size: 1.8rem; /* Larger logo font size */
-  font-weight: bold;
-  color: #FFD700; /* Gold color for logo */
-  text-decoration: none; /* No underline */
-  white-space: nowrap; /* Prevents text from breaking into lines */
-}
-
-/* Profile Image */
-.profile-image {
-  width: 40px; /* Adjust size of the profile image */
-  height: 40px;
-  border-radius: 50%; /* Make it circular */
-  object-fit: cover; /* Ensures the image fits the circle without distortion */
-  margin-right: 15px; /* Add space between profile image and logo */
-  display: block; /* Ensure it displays as a block-level element */
-}
-
-
-/* Navigation Links */
-.nav-links {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-  gap: 0px; /* Space between links */
-}
-
-.nav-links a {
-  text-decoration: none; /* No underline */
-  color: white;
-  font-size: 1.1rem; /* Slightly smaller font size for links */
-  font-weight: bold;
-  padding: 10px 20px; /* Padding for clickability and spacing */
-  transition: color 0.3s ease, background-color 0.3s ease;
-  position: relative; /* Needed for pseudo-element separators */
-}
-
-/* Vertical Separator Lines */
-.nav-links a:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 50%; /* Line height */
-  width: 1px;
-  background-color: #FFD700; /* Gold vertical line */
-}
-
-/* Hover Effect */
-.nav-links a:hover {
-  color: #FFD700; /* Gold color for hover */
-  background-color: rgba(255, 215, 0, 0.2); /* Subtle highlight on hover */
-  border-radius: 5px; /* Rounded edges for hover effect */
-}
-
-
-
-/* Ensure Content Below Navbar */
-body {
-  margin: 0;
-  padding-top: 80px; /* Adjust this value based on the height of your navbar */
-  overflow-x: hidden; /* Prevent horizontal scrolling due to fixed navbar */
-}
-
-
-
 /* Container */
 .container {
   max-width: 1200px;
-  margin: 80px auto; /* Centers the container */
+  margin: 80px auto;
   padding: 20px;
-  background: white; /* Background color for the content */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .centered-heading {
-  text-align: center; /* Centers the text horizontally */
-  margin: 20px 0; /* Optional: Add spacing around the heading */
-  font-size: 1.5rem; /* Adjust font size if needed */
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.5rem;
 }

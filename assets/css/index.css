@@ -47,50 +47,6 @@
     object-fit: cover; /* Prevent distortion */
   }
   
-  /* Navbar Fixes */
-  .navbar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-  
-  .navbar-profile {
-    position: relative;
-    margin-right: auto; /* Push profile image to the far left */
-    margin-left: 15px; /* Add space between image and the edge */
-  }
-  
-  .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #FFD700;
-    text-decoration: none;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-    margin-left: auto; /* Push navigation to the right */
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    transition: color 0.3s ease;
-  }
-  
-  .nav-links a:hover {
-    color: #FFD700;
-  }
-  
-  .nav-links .active {
-    color: #FFD700; /* Highlight the active tab */
-  }
   
   /* Buttons */
   .buttons {
