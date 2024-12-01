@@ -117,3 +117,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("video-modal");
+  const openModalButton = document.querySelector(".open-modal");
+  const closeModalButton = modal.querySelector(".close");
+
+  // Open modal on button click
+  openModalButton.addEventListener("click", function () {
+    modal.style.display = "flex";
+  });
+
+  // Close modal on close button click
+  closeModalButton.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  // Close modal if user clicks outside modal content
+  modal.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+});
