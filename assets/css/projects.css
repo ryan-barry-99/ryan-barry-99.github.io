@@ -88,3 +88,26 @@ body {
     font-size: 1rem;
   }
 }
+
+.project-image-container {
+  max-width: 900px; /* Cap the container width */
+  margin: 0 auto; /* Center the container horizontally */
+  text-align: center; /* Center-align the content */
+}
+
+.project-image-container {
+  margin-top: 40px; /* Adds space above */
+}
+
+.project-image-container img {
+  width: 100%; /* Scale the image to fit the container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+}
+
+.project-image-container .caption {
+  font-size: 0.9rem; /* Match your base caption font size */
+  color: #555; /* Match existing text color for consistency */
+  margin-top: 10px; /* Add spacing below the image */
+}

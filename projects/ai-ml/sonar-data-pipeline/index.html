@@ -3,24 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Under Construction">
-  <title>Under Construction</title>
+  <meta name="description" content="Synthetic Data Pipeline for Active Acoustic Machine Learning by Ryan Barry">
+  <title>Synthetic Data Pipeline - Ryan Barry</title>
+  <meta name="keywords" content="Synthetic Data, Acoustic Machine Learning, Penn State ARL, SONAR, Active Acoustic ML">
+  <meta name="author" content="Ryan Barry">
   <link rel="stylesheet" href="/assets/css/base.css">
-  <link rel="stylesheet" href="/assets/css/under-construction.css">
+  <link rel="stylesheet" href="/assets/css/projects.css">
+  <link rel="stylesheet" href="/assets/css/synthetic-data-pipeline.css">
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- Load Navbar -->
   <div id="navbar"></div>
 
-  <!-- Main Content -->
-  <div class="construction-container">
-    <h1>🚧 Under Construction 🚧</h1>
-    <p>We're working hard to bring this page to life. Please check back soon!</p>
-    <a href="/" class="btn">Return to Home</a>
-  </div>
+  <main class="container">
+    <!-- Page Header -->
+    <header class="page-header">
+      <h1>Synthetic Data Pipeline for Active Acoustic Machine Learning</h1>
+      <p>Developed during my SOAR Internship at Penn State ARL.</p>
+    </header>
 
-  <!-- Footer -->
+    <!-- Project Image -->
+    <div class="project-image-container">
+      <img src="/assets/images/penn-state/soar-quad-chart.jpeg" alt="Project Poster" />
+      <p class="caption">Quad Chart presentation during SOAR Internship.</p>
+    </div>
+
+    <!-- Overview -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Overview</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Overview</h2>
+        <p>This project focused on developing a synthetic data pipeline for active acoustic machine learning tasks, enabling machine learning on unclassified SONAR data.</p>
+        <ul>
+          <li>Interfaced with Hardware-in-the-Loop (HiL) software to generate acoustic data.</li>
+          <li>Addressed limitations in real-world data availability, particularly the scarcity of unclassified SONAR data.</li>
+          <li>Integrated a machine learning model for regression tasks.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Technical Details -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Technical Details</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Technical Details</h2>
+        <ul>
+          <li>Developed a Python application to interface with Hardware-in-the-Loop (HiL) simulation software for unmanned undersea vehicles (UUVs) over TCP.</li>
+          <li>Designed and implemented various scenarios for UUV and target pose, as well as navigation speed.</li>
+          <li>Automated scenario execution in the HiL simulation mode to generate theoretical acoustic data.</li>
+          <li>Processed the simulation output into individual acoustic pulses for model training.</li>
+          <li>Validated ML models on synthetic data for acoustic range and angle of arrival, with the hypothesis that pretraining on synthetic data improves performance when refined with real-world data through transfer learning.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Key Deliverables -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Key Deliverables</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Key Deliverables</h2>
+        <ul>
+          <li>Comprehensive literature review on active acoustic machine learning.</li>
+          <li>Programmatic scenario development across a range of preset parameters.</li>
+          <li>Automated interface with HiL simulation software to streamline loading and execution of scenarios.</li>
+          <li>A dataset of SONAR pulses with ground truth for range and acoustic angle of arrival.</li>
+          <li>Machine learning regression models predicting range and acoustic angle of arrival for individual pulses.</li>
+          <li>A final report summarizing findings, detailing pipeline usage, and providing recommendations for future work.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Results</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Project Results</h2>
+        <ul>
+          <li>Generated a large dataset of synthetic acoustic pulses covering a wide range of scenarios.</li>
+          <li>Successfully interfaced with the Hardware-in-the-Loop simulation in real time using a Jupyter Notebook.</li>
+          <li>The model demonstrated strong performance in predicting range but struggled to learn meaningful information about the acoustic angle of arrival. This limitation was due to low-fidelity simulation data lacking phase offsets between the SONAR array’s hydrophones, which are critical for beamforming.</li>
+          <ul>
+            <li>With access to phase offsets across all SONAR array channels, the model could estimate the acoustic angle of arrival using an approach similar to beamforming algorithms. Higher fidelity simulation data would resolve this limitation.</li>
+          </ul>
+        </ul>
+        <p>The synthetic data pipeline serves as a proof-of-concept for future applications in active acoustic machine learning.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Load Footer -->
   <div id="footer"></div>
+
+  <script>
+    // Load navbar dynamically
+    fetch("/navbar")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("navbar").innerHTML = html;
+      })
+      .catch(error => console.error("Error loading navbar:", error));
+
+    // Load footer dynamically
+    fetch("/footer")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("footer").innerHTML = html;
+      })
+      .catch(error => console.error("Error loading footer:", error));
+  </script>
 
   <script src="/assets/js/script.js"></script>
 </body>
