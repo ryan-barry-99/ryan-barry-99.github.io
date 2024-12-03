@@ -15,6 +15,74 @@ a {
   text-decoration: none;
   color: white;
 }
+/* Social Links */
+.social-links {
+  position: absolute;
+  top: 20px;
+  left: 50%; /* Centers the container horizontally */
+  transform: translateX(-50%); /* Adjusts for proper horizontal centering */
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+  filter: invert(1);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+
+.sidebar .social-links {
+  display: flex; /* Ensures links are placed in a row */
+  flex-direction: row; /* Places items horizontally */
+  align-items: center; /* Vertically centers the icons */
+  justify-content: flex-start; /* Aligns items to the left */
+  margin-top: 230px; /* Positioning within the sidebar */
+  transform: translateX(-100px);
+  gap: 0px;
+  text-decoration: none;
+  border-bottom: none; /* No underline for social links */
+}
+
+.sidebar .social-links a {
+  display: inline-block; /* Ensures each link behaves like a button */
+  text-align: center; /* Centers the icon inside the link */
+  transition: background 0.3s ease, filter 0.3s ease; /* Smooth transition for both effects */
+  text-decoration: none;
+  border-bottom: none; /* No underline for social links */
+}
+
+.sidebar .social-links a:hover {
+  background-color: rgba(255, 215, 0, 0.2); /* Semi-transparent gold highlight */
+  text-decoration: none;
+  border-bottom: none; /* No underline for social links */
+  border-bottom: none; /* No underline for social links */
+}
+
+.sidebar .social-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(1); /* White by default */
+  transition: filter 0.3s ease, background 0.3s ease;
+  margin-top: 5px;
+  text-decoration: none;
+  border-bottom: none; /* No underline for social links */
+}
+
+.sidebar .social-links a:hover .social-icon {
+  filter: invert(74%) sepia(95%) saturate(600%) hue-rotate(1deg) brightness(100%) contrast(95%);
+  /* Changes the icon color to gold on hover */
+  transform: scale(1); /* Slightly increases the icon size */
+  opacity: 1;
+  text-decoration: none;
+  border-bottom: none; /* No underline for social links */
+}
 
 /* Navbar */
 .navbar {
