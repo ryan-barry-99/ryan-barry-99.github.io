@@ -100,7 +100,7 @@ body {
 }
 
 .project-image-container img {
-  width: 100%; /* Scale the image to fit the container */
+  width: 75%; /* Scale the image to fit the container */
   height: auto; /* Maintain aspect ratio */
   border-radius: 8px; /* Optional: Add rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */

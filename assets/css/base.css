@@ -15,6 +15,15 @@ a {
   text-decoration: none;
   color: white;
 }
+
+.blue-link {
+  color: blue; /* Set the desired blue color */
+  text-decoration: underline; /* Makes it look like a traditional link */
+}
+
+.blue-link:hover {
+  color: darkblue; /* Optionally, change the color on hover */
+}
 /* Social Links */
 .social-links {
   position: absolute;

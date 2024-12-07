@@ -3,25 +3,144 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Under Construction">
-  <title>Under Construction</title>
+  <meta name="description" content="University Rover Challenge Projects by Ryan Barry - Software Technical Lead">
+  <title>University Rover Challenge - Ryan Barry</title>
   <link rel="stylesheet" href="/assets/css/base.css">
-  <link rel="stylesheet" href="/assets/css/under-construction.css">
+  <link rel="stylesheet" href="/assets/css/projects.css">
 </head>
 <body>
   <!-- Navbar -->
   <div id="navbar"></div>
 
-  <!-- Main Content -->
-  <div class="construction-container">
-    <h1>🚧 Under Construction 🚧</h1>
-    <p>We're working hard to bring this page to life. Please check back soon!</p>
-    <a href="https://github.com/ryan-barry-99/rovers" class="btn">View on Github</a>
-    <a href="/" class="btn">Return to Home</a>
-  </div>
+  <main class="container">
+    <!-- Page Header -->
+    <header class="page-header">
+      <h1>University Rover Challenge</h1>
+      <p>Software Technical Lead for the University Rover Challenge team under RIT Space Exploration (SPEX).</p>
+    </header>
+
+    <!-- Team Photo -->
+    <section>
+      <div class="project-image-container">
+        <img src="/assets/images/rovers/team-photo-spring2024.jpeg" alt="Spring 2024 Team Lead Photo" class="project-image">
+        <p class="caption">Spring 2024 Team Lead Photo</p>
+      </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Overview</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Project Overview</h2>
+        <p>The University Rover Challenge (URC) is an annual university level robotics competition held by the Mars Society to design and build a rover that could be used in Martian environments.</p>
+        <ul>
+          <li><strong>My Role:</strong> Software Technical Lead</li>
+          <ul>
+            <li>Overhauled the entire software architecture into a modular system
+              <ul>
+                <li>ROS for data and communications</li>
+                <li>Embedded C++ for peripheral control</li>
+              </ul>
+            <li>Hosted design reviews for electrical, mechanical, and software teams.</li>
+          </ul>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Missions -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>URC Missions</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>URC Missions</h2>
+        <ul>
+          <li><strong>Science Mission:</strong> Visit sites of biological interest and collect and analyze samples.</li>
+          <li><strong>Extreme Retrieval & Delivery Mission:</strong> Pick up and deliver objects in the field.</li>
+          <li><strong>Equipment Servicing Mission:</strong> Perform several dexterous tasks, including typing on a keyboard, using a screwdriver, and plugging in a USB stick.</li>
+          <li><strong>Autonomous Travel Mission:</strong> Autonomously traverse between staged markers.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Technical Details -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Technical Contributions</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Technical Contributions</h2>
+        <ul>
+          <!-- Mentorship -->
+          <li><strong>Team Mentorship:</strong> Provided guidance to underclassmen on the team across multiple disciplines.</li>
+          <ul>
+            <li>Led full-team meetings to review rover architecture and subsystems.</li>
+            <li>Hosted cross-disciplinary design reviews for electrical, mechanical, and software teams.</li>
+            <li>Advised on PCB design practices to ensure robust hardware development.</li>
+            <li>Mentored software team members on robotics theory, ROS architecture, and software design principles.</li>
+          </ul>
+    
+          <!-- Software Architecture -->
+          <li><strong>Modular Software Architecture:</strong> Designed a scalable architecture using ROS (Python) for data handling and communications.</li>
+          <ul>
+            <li>Implemented on ROS Melodic with a Jetson Nano, with the team actively transitioning to a Jetson Orin Nano.</li>
+            <li>Created custom ROS messages for encoding and decoding CAN communication.</li>
+            <ul>
+              <li>Enables a common message structure between both the ROS network and the embedded network, where each message has an ID and an 8-bit buffer.</li>
+              <li>Messages are encoded and decoded on both ends depending on their application.</li>
+              <li>A singular CAN node sends and receives messages between UART and their respective ROS topics.</li>
+            </ul>
+            <li>Integrated <a href="/projects/robotics/kinematics/" class="blue-link" target="_blank">custom kinematic libraries</a> for the drive base and robotic arm control.</li>
+            <li>Developed a custom state machine for mission planning and execution.</li>
+            <li>Interface with higher bandwidth sensors including LiDAR, GPS, Cameras, communication channels.</li>
+          </ul>
+    
+          <!-- Embedded Systems -->
+          <li><strong>Embedded Systems Development:</strong> Developed firmware for sensor integration and peripheral control in C++.</li>
+          <ul>
+            <li>Used Teensy 4.1 microcontroller boards for subsystem management and peripheral control.</li>
+            <ul>
+              <li>Main Body Board: Drive base, temperature control, UART interface with Jetson.</li>
+              <li>Arm Board: Robotic arm control.</li>
+              <li>Science Board: Science payload control. Peripherals include soil collection actuator, fluorometer, micropump.</li>
+            </ul>
+            <li>Utilized the FlexCAN library for efficient CAN communication between microcontrollers and UART for communication with the main computer.</li>
+          </ul>
+          <!-- Current Role -->
+          <li><strong>Integration and Autonomy Support:</strong> Serve as an active resource for team members to address integration challenges, autonomy concerns, and high-level design questions.</li>
+        </ul>
+
+        <a href="https://github.com/ryan-barry-99/rovers" class="btn">View on GitHub</a>
+      </div>
+    </section>
+
+  </main>
 
   <!-- Footer -->
   <div id="footer"></div>
+
+  <script>
+    // Load navbar dynamically
+    fetch("/navbar")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("navbar").innerHTML = html;
+      })
+      .catch(error => console.error("Error loading navbar:", error));
+
+    // Load footer dynamically
+    fetch("/footer")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("footer").innerHTML = html;
+      })
+      .catch(error => console.error("Error loading footer:", error));
+  </script>
 
   <script src="/assets/js/script.js"></script>
 </body>
