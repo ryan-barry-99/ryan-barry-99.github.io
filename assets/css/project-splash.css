@@ -59,3 +59,56 @@ body {
 .project-link:hover {
     background: #FFC300;
 }
+
+/* Alternate Project Container */
+.project-container-alt {
+    background: #f9f9f9; /* Light gray background for distinction */
+    border: 1px solid #ccc; /* Subtle border for separation */
+    border-radius: 8px; /* Rounded corners for a clean look */
+    padding: 20px; /* Spacing inside the container */
+    margin-bottom: 20px; /* Space between containers */
+    text-align: left; /* Left-align all content */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Minimal shadow for depth */
+}
+
+/* Headings for Alternate Project Containers */
+.project-container-alt h2 {
+    font-size: 1.4rem; /* Slightly smaller heading font size */
+    color: #444; /* Medium gray for headings */
+    margin-bottom: 10px;
+}
+
+/* Paragraphs for Alternate Project Containers */
+.project-container-alt p {
+    font-size: 1rem;
+    color: #666; /* Medium gray text for contrast */
+    line-height: 1.5; /* Comfortable line height */
+}
+
+/* Image Row for Alternate Container */
+.project-container-alt .image-row-alt {
+    display: flex; /* Align images in a row */
+    gap: 15px; /* Space between images */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    margin-top: 15px;
+}
+
+/* Individual Image Item for Alternate Container */
+.project-container-alt .image-item-alt {
+    flex: 1 1 calc(25% - 15px); /* Each image takes 25% of the row */
+    max-width: calc(25% - 15px); /* Ensure consistent size */
+    text-align: center; /* Center-align captions */
+}
+
+.project-container-alt .image-item-alt img {
+    width: 100%; /* Make image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+.project-container-alt .image-item-alt p {
+    font-size: 0.9rem; /* Slightly smaller captions */
+    color: #555; /* Medium gray for captions */
+}

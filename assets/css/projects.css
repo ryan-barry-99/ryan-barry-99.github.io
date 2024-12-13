@@ -100,7 +100,8 @@ body {
 }
 
 .project-image-container img {
-  width: 75%; /* Scale the image to fit the container */
+  max-width: 75%; /* Scale the image to fit the container */
+  max-height: 400px; /* Limit the image height */
   height: auto; /* Maintain aspect ratio */
   border-radius: 8px; /* Optional: Add rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
@@ -110,4 +111,30 @@ body {
   font-size: 0.9rem; /* Match your base caption font size */
   color: #555; /* Match existing text color for consistency */
   margin-top: 10px; /* Add spacing below the image */
+}
+
+.image-row {
+  display: flex; /* Enables Flexbox for horizontal layout */
+  gap: 10px; /* Adds space between images */
+  justify-content: center; /* Centers the images in the container */
+  flex-wrap: wrap; /* Allows images to wrap if the screen size is small */
+}
+
+.image-item {
+  flex: 1; /* Each image takes equal space */
+  max-width: 30%; /* Limits the width of each image to 30% of the container */
+  text-align: center; /* Centers text below the image */
+}
+
+.image-item img {
+  width: 100%; /* Makes the image responsive */
+  height: auto; /* Maintains aspect ratio */
+  border: 1px solid #ddd; /* Optional: Adds a border for visual clarity */
+  border-radius: 5px; /* Optional: Adds rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+}
+
+.image-item p {
+  font-size: 0.9em; /* Makes the caption text smaller */
+  margin-top: 10px; /* Adds space between the image and the caption */
 }

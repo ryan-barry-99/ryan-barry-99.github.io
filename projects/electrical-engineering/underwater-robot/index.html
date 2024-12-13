@@ -3,24 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Under Construction">
-  <title>Under Construction</title>
+  <meta name="description" content="Underwater Robot Motherboard by Ryan Barry">
+  <title>Underwater Robot Motherboard - Ryan Barry</title>
   <link rel="stylesheet" href="/assets/css/base.css">
-  <link rel="stylesheet" href="/assets/css/under-construction.css">
+  <link rel="stylesheet" href="/assets/css/projects.css">
+  <link rel="stylesheet" href="/assets/css/project-splash.css">
 </head>
 <body>
-  <!-- Navbar -->
-  <div id="navbar"></div>
+  <div id="navbar"></div> <!-- Load navbar dynamically -->
 
-  <!-- Main Content -->
-  <div class="construction-container">
-    <h1>🚧 Under Construction 🚧</h1>
-    <p>We're working hard to bring this page to life. Please check back soon!</p>
-    <a href="/" class="btn">Return to Home</a>
+  <main class="container">
+    <header class="page-header">
+      <h1>Underwater Robot Motherboard</h1>
+      <p>Custom-designed PCB to manage power distribution, sensor integration, and motor control for an underwater robot.</p>
+    </header>
+    <div class="project-container-alt">
+      <p>
+        This motherboard was a custom-designed 2-layer PCB for my multidisciplinary senior design project, an underwater robot. It serves as the central hub for power management, sensor data acquisition, and motor control. It was designed as a cape pcb for an STM32 nucleo board.
+      </p>
+      <p>The design includes:</p>
+      <ul>
+        <li>Power distribution from the battery with 12-5V buck converter and 5-3.3V LDO</li>
+        <li>High-current H-bridge to drive brushed DC motor for a propeller</li>
+        <li>Hardware interfaces for the following peripherals:</li>
+        <ul>
+          <li>Two cameras</li>
+          <li>Dissolved oxygen sensor</li>
+          <li>Ethernet controller</li>
+          <li>IMU</li>
+          <li>pH probe</li>
+          <li>Salinity sensor</li>
+          <li>Servo</li>
+          <li>Thermistor</li>
+        </ul>
+        <li>Designed using Altium Designer and hand soldered SMT components</li>
+      </ul>
+    </div>
+    
+
+    <div class="project-container-alt">
+      <h2>Final PCB Design</h2>
+      <div class="image-row">
+        <div class="image-item">
+          <img src="/assets/images/PCB/underwater-robot/solder1.png" alt="Assembly Under Microscope">
+          <p>Assembly under a microscope.</p>
+        </div>
+        <div class="image-item">
+          <img src="/assets/images/PCB/underwater-robot/solder2.jpeg" alt="Close-up of Components">
+          <p>Close-up of soldered components.</p>
+        </div>
+        <div class="image-item">
+          <img src="/assets/images/PCB/underwater-robot/motherboard.jpeg" alt="Final PCB Layout">
+          <p>Final PCB layout.</p>
+        </div>
+        <div class="image-item">
+          <img src="/assets/images/PCB/underwater-robot/sensor-testing.jpeg" alt="Sensor Testing">
+          <p>Testing with a sensor.</p>
+      </div>
+    </div>
+    </div>
+
+    
+
+  <div class="project-container-alt">
+    <!-- PCB Schematic -->
+    <h1>Schematic</h1>
+    <iframe 
+      src="/assets/files/14663_Motherboard-1.pdf" 
+      width="100%" 
+      height="700px" 
+      style="border: none;">
+      Your browser does not support embedded PDFs. 
+      <a href="/assets/files/14663_Motherboard-1.pdf" target="_blank">Download the PDF</a>
+    </iframe>
   </div>
 
-  <!-- Footer -->
-  <div id="footer"></div>
+  </main>
+
+  <div id="footer"></div> <!-- Load footer dynamically -->
 
   <script src="/assets/js/script.js"></script>
 </body>
