@@ -1,0 +1,267 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{
+    top=0.25in,      % Top margin
+    bottom=0.25in, % Bottom margin
+    left=0.5in,   % Left margin
+    right=0.5in    % Right margin
+}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, % false: boxed links; true: colored links
+    linkcolor=black,  % color of internal links (change box color with linkbordercolor)
+    citecolor=blue,  % color of links to bibliography
+    filecolor=magenta, % color of file links
+    urlcolor=black,   % color of external links
+    pdfborder={0 0 0}, % remove borders around links
+    pdfnewwindow=true, % links open in new window
+    pdfstartview={XYZ null null 1.00} % adjust PDF view
+}
+
+
+% Custom command for section headings formatting
+\newcommand{\heading}[1]{%
+    \vspace{-5mm} % Adjust the negative vertical space to fit closely
+    \section*{#1}%
+    \vspace{-3mm}%
+    \noindent\hrule height 0.5pt % No space under the heading
+    \vspace{4mm}%
+}
+
+% Custom command for experience block
+% Usage: \experience{Title}{Company}{Location}{Date}{Bullet points}
+\newcommand{\experience}[5]{%
+    \vspace{-1mm}%
+    \noindent\textbf{#1}%
+    % Check if #2 (Company) is provided
+    \ifx&#2&
+    % If #2 is empty, skip the comma and company
+    \else
+        , \textit{#2}%
+    \fi
+    % Check if #3 (Location) is provided
+    \ifx&#3&
+    % If #3 is empty, skip the comma and location
+    \else
+        , #3%
+    \fi
+    \hfill \textit{#4} \\
+    \vspace{-6.8mm}%
+    \begin{itemize}[itemsep=-5pt]
+        \setlength{\itemindent}{0em}
+        #5
+    \end{itemize}
+}
+
+\begin{document}
+
+% Personal Information
+\begin{center}
+    \vspace{-5mm} 
+    \textbf{\huge Ryan Barry} \\
+    \vspace{1mm}
+    \href{http://ryanbarry.me}{ryanbarry.me}
+    \hspace{0.2em} \vline \hspace{0.2em}
+    \href{mailto:ryanbarry.engineering@gmail.com}{ryanbarry.engineering@gmail.com}
+    \hspace{0.2em} \vline \hspace{0.2em}
+    (315) 596-0754
+\end{center}
+
+% Professional Experience
+\vspace{-3mm} % Adjust the negative vertical space to fit closely
+
+
+% Skills
+\heading{Technical Skills}
+\vspace{-1mm}%
+\noindent\textbf{Languages:} Assembly, C/C++, MATLAB, PLC Ladder Logic, Python \\
+\textbf{Frameworks:} CUDA, Git, Jupyter, Keras, NumPy, OpenCV, Pandas, PyTorch, ROS, Scikit-Learn, TensorFlow \\
+\textbf{Software:} Altium Designer, AutoCAD, Creo, Inventor, LTSpice, MATLAB, SOLIDWORKS \\
+\textbf{Hardware:} Microcontrollers, Motor/Sensor Control, PCB Design, SMT Soldering, TH Soldering, 3D Printing
+
+
+\heading{Professional Experience and Research}
+
+\experience
+    {Researcher}
+    {RIT Adaptive Human-Robot Teaming Lab}
+    {Rochester, NY}
+    {August 2023 – May 2024 (planned to resume)}
+    {
+        \item  Conducting research on applying Proximal Policy Optimization to quadrupedal robot navigation using 2D/3D camera data and 360° LIDAR. 
+        \item Integrated the PPO algorithm for real-time control, ongoing plans to refine the policy’s convergence and performance.
+    }
+    
+\experience
+    {Robotics Graduate Teaching Assistant}
+    {Rochester Institute of Technology}
+    {Rochester, NY}
+    {August 2023 – May 2024}
+    {
+        \item  Facilitated student learning of high-level robotics concepts and ROS through lab work and research projects.
+    }
+
+\experience
+    {\href{https://github.com/ryan-barry-99/rovers}{Software Technical Lead}}
+    {\href{https://github.com/ryan-barry-99/rovers}{RIT University Rover Challenge Team}}
+    {Rochester, NY}
+    {June 2023 – May 2024}
+    {
+        \item \href{https://github.com/ryan-barry-99/rovers}{Spearheaded software architecture development for autonomous and remote operation of a robotic rover.}
+
+        \item \href{https://github.com/ryan-barry-99/rovers}{Directed a team of computer scientists to develop and test software for all subsystems of RIT’s rover.}
+
+        \item \href{https://github.com/ryan-barry-99/rovers}{Integrated a Python-based ROS application with embedded C++ code for peripheral control via Controller Area Network (CAN).}
+    }
+
+\experience
+    {Electrical Engineer}
+    {RIT Electric Vehicle Team}
+    {Rochester, NY}
+    {August 2021 – May 2024}
+    {
+        \item Designed PCBs for custom electric motorcycles (IMU, CAN data handler, and 3 phase motor controller).
+
+        \item Led teams and mentored underclassmen in PCB design using Altium, and in research and development principles.
+
+    }
+
+\experience
+    {Machine Learning R\&D Intern}
+    {Penn State ARL}
+    {University Park, PA}
+    {May 2023 – August 2023}
+    {
+        \item Developed proof of concept synthetic data pipeline for active acoustic ML in unmanned undersea vehicles.
+
+        \item Designed Python application for scenario development and interface with UUV simulation software.
+
+        \item Developed an acoustic range and angle of arrival regression model to support transfer learning hypothesis.
+    }
+
+\experience
+    {Product Engineering Co-op}
+    {The Raymond Corporation}
+    {Greene, NY}
+    {January 2022 – July 2022}
+    {
+        \item Programmed a PLC based robotic test fixture with a touch LCD to stress test forklift control handle cables.
+
+        \item Researched and documented the adaptation of a software application to emulate CAN functionality for motor controllers on PCBs used in forklift test fixtures.
+
+    }
+
+\experience
+    {Electrical Engineering Intern}
+    {Davis Standard LLC}
+    {Fulton, NY}
+    {May 2021 – August 2021}
+    {
+        \item Revised wiring schematic and electrical panel drawings in AutoCAD.
+
+        \item Researched and developed proof of concept prototype for an industrial polymer extruder modeled after 3D Printers to be used for automated splice line placement along material necking border.
+    }
+    
+
+
+% Projects
+\vspace{-0.5em}
+\heading{Projects}
+
+\experience
+    {Custom Hybrid Electric Wheelchair Attachment}
+    {}
+    {}
+    {September 2024 – Present}
+    {
+        \item Designing a non-invasive hub actuation system for low drag, hybrid manual and powered control of manual wheelchairs.
+    }
+    
+\experience
+    {Open-Source Universal Kinematic Libraries for Generic Robots}
+    {}
+    {}
+    {September 2023 – Present}
+    {
+        \item \href{https://github.com/ryan-barry-99/mobile_robot_kinematics_cpp}{Developed Python and C++ libraries for forward and inverse kinematic calculations of any fixed-wheeled mobile robot.}
+        
+        \item \href{https://github.com/ryan-barry-99/arm_robot_kinematics_cpp/tree/main}{Developed Python and C++ libraries for forward and inverse kinematic calculations of any arm robot configuration.}
+    }
+    
+\experience
+    {Air Hockey Robot}
+    {}
+    {}
+    {October 2023 – December 2023}
+    {
+        \item \href{https://ryanbarry.me/projects/robotics/air-hockey-robot/}{Designed 3 DOF robot to play air hockey via YOLOv8 object detection and LSTM trajectory prediction.}
+    }
+
+
+    
+% \experience
+%     {Multimodal Fusion Architecture for IMDb Rating Estimation}
+%     {}
+%     {}
+%     {April 2023}
+%     {
+%         \item Developed a Convolutional Neural Network (CNN) and BERT fusion-based regression model for IMDb rating estimation from movie posters and related text. Achieved 81.3\% validation accuracy for predictions within 0.3 rating margin.
+%     }
+
+
+    
+\experience
+    {\href{https://github.com/ryan-barry-99/Trajectory-Matching-Omnidirectional-Robot/blob/main/Real_time_Trajectory_Matching_of_Moving_Objects.pdf}{Trajectory Matching Omnidirectional Mobile Robot}}
+    {}
+    {}
+    {February 2023 – April 2023}
+    {
+        \item Designed and programmed an omnidirectional robot to serve as a modular research platform.
+
+        \item \href{https://github.com/ryan-barry-99/Trajectory-Matching-Omnidirectional-Robot/tree/main/}{Explored detection and tracking in mobile robotics, utilizing YOLOv8 to follow a free-floating balloon.}
+    }
+    
+\experience
+    {\href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Underwater Robot Control System}}
+    {}
+    {}
+    {November 2022 – April 2023}
+    {
+        \item \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Designed and manufactured a motherboard PCB capable of managing power distribution, motor control, servo control, interfacing with two cameras, and integrating five sensors.}
+    }
+    
+\experience
+    {Collaborative Robot Interactive Game}
+    {}
+    {}
+    {February 2023 – April 2023}
+    {
+        \item \href{https://github.com/ryan-barry-99/DeepSORT-with-OAK-D-for-Collaborative-Robots/tree/main}{Developed a ROS based interactive ball and cup game for Baxter robot with DeepSORT and YOLOv6.}
+    }
+    
+\experience
+    {Autonomous Nerf Blaster Mobile Robot}
+    {}
+    {}
+    {November 2021 – December 2021}
+    {
+        \item Designed an autonomous mobile robot with a modified Nerf blaster to track and shoot at a moving shield.
+    }
+
+
+% Education
+\vspace{-0.5em}
+\heading{Education}
+\vspace{-1mm}%
+\noindent\textbf{Rochester Institute of Technology}, Rochester, NY \\
+Master of Science in Electrical Engineering \hfill Cumulative GPA: 3.92 \\
+\textit{Specialization in Robotics and AI/ML} \\
+\noindent\textbf{Rochester Institute of Technology}, Rochester, NY \\
+Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill Cumulative GPA: 3.86 \\
+\textbf{Applicable Courses:} Robotic-Systems, Principles-of-Robotics, Advanced-Robotics, Intro-to-Artificial-Intelligence, AI-Explorations, Biorobotics/Machine-Learning, Deep-Learning, Robot-Perception
+
+
+
+
+\end{document}
