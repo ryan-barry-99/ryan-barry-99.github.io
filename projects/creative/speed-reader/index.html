@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Speed Reader Web App - A tool to enhance your reading speed and comprehension">
+  <title>Speed Reader Project Page</title>
+  
+  <!-- Link to external CSS files (adjust paths as necessary) -->
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/projects.css">
+  <link rel="stylesheet" href="/assets/css/project-splash.css">
+  <link rel="stylesheet" href="/assets/css/speed-reader.css"> <!-- Link to the new Speed Reader CSS -->
+</head>
+<body>
+  <div id="navbar"></div> <!-- Load navbar dynamically -->
+
+
+  <main class="container">
+    <header class="page-header">
+      <h1>Speed Reader Web App</h1>
+      <p>A web-based tool to enhance your reading speed and comprehension by displaying one word at a time.</p>
+    </header>
+    
+    <div class="project-container-alt">
+      <p>
+        Originally developed as a Python application, the Speed Reader Web App is designed to help users improve their reading speed and comprehension by displaying text one word at a time. Users can customize settings such as Words Per Minute (WPM), pause duration between paragraphs, and the color of the active word. The application also includes features like font size adjustments and text navigation controls.
+      </p>
+      <p>The application includes:</p>
+      <ul>
+        <li>Text input area for entering or pasting text to be read.</li>
+        <li>Words Per Minute (WPM) slider ranging from 100 to 1500.</li>
+        <li>Pause duration input between paragraphs in milliseconds.</li>
+        <li>Color selector for highlighting the active word.</li>
+        <li>Text position slider for navigating through the text.</li>
+        <li>Play/Pause and Reset controls.</li>
+        <li>Font size adjustment buttons for both the main display and the scrolling text window.</li>
+        <li>Paragraph navigation buttons (Previous, Current, Next).</li>
+        <li>Responsive design for optimal viewing on various devices.</li>
+      </ul>
+    </div>
+    
+    <!-- Speed Reader Web App Integration -->
+    <div class="speed-reader-container">
+      <h2>Speed Reader Application</h2>
+      <div class="speed-reader-main">
+        <!-- Left Panel: Controls and Main Display -->
+        <div class="speed-reader-left">
+          <!-- Text Input -->
+          <label for="inputText">Enter Text to Speed Read:</label>
+          <textarea id="inputText" placeholder="Paste or type text here..."></textarea>
+          
+          <!-- WPM Slider -->
+          <label id="wpmLabel" for="wpmSlider">Words Per Minute: 300</label>
+          <input
+            type="range"
+            id="wpmSlider"
+            min="100"
+            max="1500"
+            step="10"
+            value="300"
+          />
+          
+          <!-- Pause Between Paragraphs (ms) -->
+          <label for="pauseBetweenParagraphs">Pause Between Paragraphs (ms):</label>
+          <input
+            type="number"
+            id="pauseBetweenParagraphs"
+            value="250"
+            min="100"
+            max="5000"
+          />
+          
+          <!-- Active Word Color -->
+          <label for="activeWordColor">Active Word Color:</label>
+          <select id="activeWordColor">
+            <option value="yellow" selected>Yellow</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="cyan">Cyan</option>
+            <option value="magenta">Magenta</option>
+            <option value="orange">Orange</option>
+            <option value="pink">Pink</option>
+            <option value="purple">Purple</option>
+            <option value="lightgray">Light Gray</option>
+          </select>
+          
+          <!-- Text Position Slider -->
+          <label for="textPositionSlider">Text Position:</label>
+          <input
+            type="range"
+            id="textPositionSlider"
+            min="0"
+            max="0"
+            value="0"
+          />
+          
+          <!-- Play/Pause and Reset Buttons -->
+          <div class="buttons-row">
+            <button id="playPauseBtn">Play</button>
+            <button id="resetBtn">Reset</button>
+          </div>
+          
+          <!-- Font Size Buttons -->
+          <div class="buttons-row">
+            <button id="increaseFontBtn">Increase Font Size</button>
+            <button id="decreaseFontBtn">Decrease Font Size</button>
+          </div>
+          
+          <!-- Paragraph Navigation Buttons -->
+          <div class="buttons-row">
+            <button id="prevParagraphBtn">Previous Paragraph</button>
+            <button id="currentParagraphBtn">Current Paragraph</button>
+            <button id="nextParagraphBtn">Next Paragraph</button>
+          </div>
+          
+          <!-- Main Word Display -->
+          <div id="displayWord"></div>
+        </div>
+        
+        <!-- Right Panel: Full Text Display -->
+        <div class="speed-reader-right">
+          <div id="fullText"></div>
+          <div class="scroll-font-buttons">
+            <button id="increaseScrollFontBtn">Increase Scroll Font Size</button>
+            <button id="decreaseScrollFontBtn">Decrease Scroll Font Size</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="project-container-alt">
+      <h2>How It Works</h2>
+      <p>
+        The Speed Reader Web App breaks down the input text into words and displays them one at a time at the specified WPM rate. Users can adjust the reading speed, pause duration between paragraphs, and the color of the active word to suit their preferences. The application also allows navigation through the text using a slider and provides controls to adjust font sizes for better readability.
+      </p>
+    </div>
+    
+    
+  </main>
+
+  <div id="footer"></div> <!-- Load footer dynamically -->
+
+  <script src="/assets/js/script.js"></script>
+
+  <!-- Inline JavaScript for Speed Reader (You can move this to an external JS file if preferred) -->
+  <script>
+    // ---------------------------------------
+    // Variables to replicate PyQt state
+    // ---------------------------------------
+    let paragraphs = [];           // Array of paragraph arrays (each array holds words)
+    let currentParagraphIndex = 0;
+    let currentWordIndex = 0;
+    let isPaused = true;
+    let isStarted = false;
+    let timer = null;
+
+    // Font sizes
+    let fontSize = 36;             // For main display
+    let scrollingFontSize = 24;    // For scrolling text
+
+    // Timing / WPM parameters
+    let wpm = 300;                 // Default WPM
+    let pauseBetweenParagraphs = 250;  // ms
+    let firstWordDelay = 150;      // extra delay for first word of a paragraph
+
+    // Active word color
+    let activeWordColor = "yellow";
+
+    // HTML elements
+    const inputText = document.getElementById("inputText");
+    const wpmSlider = document.getElementById("wpmSlider");
+    const wpmLabel = document.getElementById("wpmLabel");
+    const pauseBetweenParagraphsInput = document.getElementById("pauseBetweenParagraphs");
+    const activeWordColorSelect = document.getElementById("activeWordColor");
+    const textPositionSlider = document.getElementById("textPositionSlider");
+
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const increaseFontBtn = document.getElementById("increaseFontBtn");
+    const decreaseFontBtn = document.getElementById("decreaseFontBtn");
+    const prevParagraphBtn = document.getElementById("prevParagraphBtn");
+    const currentParagraphBtn = document.getElementById("currentParagraphBtn");
+    const nextParagraphBtn = document.getElementById("nextParagraphBtn");
+
+    const displayWord = document.getElementById("displayWord");
+    const fullText = document.getElementById("fullText");
+
+    const increaseScrollFontBtn = document.getElementById("increaseScrollFontBtn");
+    const decreaseScrollFontBtn = document.getElementById("decreaseScrollFontBtn");
+
+    // ---------------------------------------
+    // Initialization / Event Listeners
+    // ---------------------------------------
+    window.addEventListener("load", () => {
+      // Initialize display
+      displayWord.textContent = "";
+      fullText.innerHTML = "";
+    });
+
+    // Text changed => reset
+    inputText.addEventListener("input", resetReadingSession);
+
+    // WPM slider
+    wpmSlider.addEventListener("input", (e) => {
+      wpm = parseInt(e.target.value, 10);
+      wpmLabel.textContent = `Words Per Minute: ${wpm}`;
+      if (isStarted && !isPaused) {
+        startTimer(); // update the timer with new WPM
+      }
+    });
+
+    // Pause between paragraphs
+    pauseBetweenParagraphsInput.addEventListener("change", () => {
+      pauseBetweenParagraphs = parseInt(pauseBetweenParagraphsInput.value, 10);
+    });
+
+    // Active word color
+    activeWordColorSelect.addEventListener("change", () => {
+      activeWordColor = activeWordColorSelect.value || "yellow";
+      updateFullTextDisplay();
+    });
+
+    // Text position slider
+    textPositionSlider.addEventListener("input", (e) => {
+      const position = parseInt(e.target.value, 10);
+      displayWordAtGlobalPosition(position);
+    });
+    textPositionSlider.addEventListener("change", () => {
+      // If we were reading, resume
+      if (isStarted && !isPaused) {
+        startTimer();
+      }
+    });
+
+    // Buttons
+    playPauseBtn.addEventListener("click", togglePlayPause);
+    resetBtn.addEventListener("click", resetReadingSession);
+
+    increaseFontBtn.addEventListener("click", increaseFontSize);
+    decreaseFontBtn.addEventListener("click", decreaseFontSize);
+    prevParagraphBtn.addEventListener("click", skipToPreviousParagraph);
+    currentParagraphBtn.addEventListener("click", skipToCurrentParagraph);
+    nextParagraphBtn.addEventListener("click", skipToNextParagraph);
+
+    increaseScrollFontBtn.addEventListener("click", increaseScrollFontSize);
+    decreaseScrollFontBtn.addEventListener("click", decreaseScrollFontSize);
+
+    // ---------------------------------------
+    // Core Functions
+    // ---------------------------------------
+
+    function resetReadingSession() {
+      // Stop any existing timer
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+
+      // Get the text from the textarea, trim it
+      const text = inputText.value.trim();
+      if (!text) {
+        paragraphs = [];
+        currentParagraphIndex = 0;
+        currentWordIndex = 0;
+        textPositionSlider.min = 0;
+        textPositionSlider.max = 0;
+        textPositionSlider.value = 0;
+        displayWord.textContent = "";
+        fullText.innerHTML = "";
+        playPauseBtn.textContent = "Play";
+        isStarted = false;
+        isPaused = true;
+        return;
+      }
+
+      // Split the text into paragraphs by double-newlines
+      const rawParagraphs = text.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+      paragraphs = rawParagraphs.map(p => p.split(/\s+/).filter(Boolean));
+
+      currentParagraphIndex = 0;
+      currentWordIndex = 0;
+      isStarted = false;
+      isPaused = true;
+      playPauseBtn.textContent = "Play";
+
+      updateTextSliderRange();
+      updateFullTextDisplay();
+      displayWordAtGlobalPosition(0); // show first word immediately
+    }
+
+    function togglePlayPause() {
+      if (!isStarted) {
+        // Not started => start reading
+        startReading();
+      } else if (isPaused) {
+        // Was paused => resume
+        isPaused = false;
+        playPauseBtn.textContent = "Pause";
+        // If we're not at the end of the text, resume
+        if (currentWordIndex < paragraphs[currentParagraphIndex].length) {
+          startTimer();
+        } else {
+          // If at the end, reset & start
+          resetReadingSession();
+          startReading();
+        }
+      } else {
+        // Was playing => pause
+        isPaused = true;
+        clearTimeout(timer);
+        playPauseBtn.textContent = "Play";
+      }
+    }
+
+    function startReading() {
+      if (paragraphs.length === 0) {
+        alert("Please enter some text to start reading.");
+        return;
+      }
+      isStarted = true;
+      isPaused = false;
+      playPauseBtn.textContent = "Pause";
+      startTimer();
+    }
+
+    function startTimer() {
+      if (timer) clearTimeout(timer);
+      // Timer interval based on WPM
+      // 60000 ms / WPM => ms per word
+      const delay = Math.floor(60000 / wpm);
+      timer = setTimeout(displayNextWord, delay);
+    }
+
+    function displayNextWord() {
+      if (currentWordIndex < paragraphs[currentParagraphIndex].length) {
+        // Display next word
+        const word = paragraphs[currentParagraphIndex][currentWordIndex];
+        displayWord.textContent = word;
+        currentWordIndex++;
+        updateTextSliderRange();
+        updateFullTextDisplay();
+
+        // Set next timer
+        if (timer) clearTimeout(timer);
+        const delay = Math.floor(60000 / wpm);
+        timer = setTimeout(displayNextWord, delay);
+
+      } else {
+        // We've reached the end of the current paragraph
+        if (currentParagraphIndex < paragraphs.length - 1) {
+          // Move to next paragraph
+          clearTimeout(timer);
+
+          // Delay a bit before showing the first word of next paragraph
+          currentParagraphIndex++;
+          currentWordIndex = 0;
+          updateTextSliderRange();
+          setTimeout(displayFirstWordOfParagraph, pauseBetweenParagraphs);
+        } else {
+          // We're at the very end of the text
+          isPaused = true;
+          clearTimeout(timer);
+          timer = null;
+          playPauseBtn.textContent = "Play";
+
+          // Keep the last word highlighted
+          currentWordIndex = paragraphs[currentParagraphIndex].length - 1;
+          displayWord.textContent = paragraphs[currentParagraphIndex][currentWordIndex];
+          updateFullTextDisplay();
+        }
+      }
+    }
+
+    function displayFirstWordOfParagraph() {
+      if (paragraphs[currentParagraphIndex] && paragraphs[currentParagraphIndex].length > 0) {
+        currentWordIndex = 0;
+        displayWord.textContent = paragraphs[currentParagraphIndex][0];
+        updateFullTextDisplay();
+        updateTextSliderRange();
+
+        // Start next timer with a slightly longer initial delay
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+          currentWordIndex = 1; // next word
+          displayNextWord();
+        }, firstWordDelay);
+      } else {
+        // If empty paragraph or something unexpected, just end
+        isPaused = true;
+        if (timer) clearTimeout(timer);
+      }
+    }
+
+    // ---------------------------------------
+    // Paragraph Navigation
+    // ---------------------------------------
+    function skipToPreviousParagraph() {
+      if (currentParagraphIndex > 0) {
+        currentParagraphIndex--;
+        currentWordIndex = 0;
+        updateTextSliderRange();
+        displayWordAtGlobalPosition(computeGlobalWordIndex());
+      }
+    }
+
+    function skipToCurrentParagraph() {
+      currentWordIndex = 0;
+      updateTextSliderRange();
+      displayWordAtGlobalPosition(computeGlobalWordIndex());
+    }
+
+    function skipToNextParagraph() {
+      if (currentParagraphIndex < paragraphs.length - 1) {
+        currentParagraphIndex++;
+        currentWordIndex = 0;
+        updateTextSliderRange();
+        displayWordAtGlobalPosition(computeGlobalWordIndex());
+      }
+    }
+
+    // ---------------------------------------
+    // Text Slider (jumping around in the text)
+    // ---------------------------------------
+    function updateTextSliderRange() {
+      const totalWords = paragraphs.reduce((acc, p) => acc + p.length, 0);
+      textPositionSlider.min = 0;
+      textPositionSlider.max = Math.max(0, totalWords - 1);
+
+      const globalIndex = computeGlobalWordIndex();
+      textPositionSlider.value = globalIndex;
+    }
+
+    function computeGlobalWordIndex() {
+      // Sum all previous paragraphs' lengths plus currentWordIndex
+      let count = 0;
+      for (let i = 0; i < currentParagraphIndex; i++) {
+        count += paragraphs[i].length;
+      }
+      return count + currentWordIndex;
+    }
+
+    function displayWordAtGlobalPosition(position) {
+      if (paragraphs.length === 0) return;
+
+      let totalWords = 0;
+      for (let i = 0; i < paragraphs.length; i++) {
+        totalWords += paragraphs[i].length;
+      }
+      if (position < 0) position = 0;
+      if (position >= totalWords) position = totalWords - 1;
+
+      // Find which paragraph this position belongs to
+      let accumulatedWords = 0;
+      for (let pIndex = 0; pIndex < paragraphs.length; pIndex++) {
+        const pLength = paragraphs[pIndex].length;
+        if (accumulatedWords + pLength > position) {
+          currentParagraphIndex = pIndex;
+          currentWordIndex = position - accumulatedWords;
+          break;
+        }
+        accumulatedWords += pLength;
+      }
+
+      // Display that word
+      if (currentWordIndex < paragraphs[currentParagraphIndex].length) {
+        const word = paragraphs[currentParagraphIndex][currentWordIndex];
+        displayWord.textContent = word;
+        updateFullTextDisplay();
+      }
+    }
+
+    // ---------------------------------------
+    // Full Text Scrolling Display & Highlight
+    // ---------------------------------------
+    function updateFullTextDisplay() {
+      // Build up the HTML with paragraphs,
+      // highlight the current word in the current paragraph
+      let html = "";
+      for (let i = 0; i < paragraphs.length; i++) {
+        let pHTML = "";
+        for (let j = 0; j < paragraphs[i].length; j++) {
+          if (i === currentParagraphIndex && j === currentWordIndex) {
+            // highlight this word
+            pHTML += `<span id="currentWord" style="color: ${activeWordColor};">${paragraphs[i][j]}</span> `;
+          } else {
+            pHTML += paragraphs[i][j] + " ";
+          }
+        }
+        html += `<p>${pHTML.trim()}</p>`;
+      }
+      fullText.innerHTML = html;
+
+      // Attempt to scroll to current highlighted word
+      const currentWordElem = document.getElementById("currentWord");
+      if (currentWordElem) {
+        // Scroll to that element
+        const parentRect = fullText.getBoundingClientRect();
+        const elemRect = currentWordElem.getBoundingClientRect();
+        const offset = elemRect.top - parentRect.top;
+        fullText.scrollTop += (offset - fullText.clientHeight / 2);
+      }
+    }
+
+    // ---------------------------------------
+    // Font Size Adjustments
+    // ---------------------------------------
+    function increaseFontSize() {
+      fontSize += 4;
+      updateDisplayWordFontSize();
+    }
+
+    function decreaseFontSize() {
+      if (fontSize > 8) {
+        fontSize -= 4;
+        updateDisplayWordFontSize();
+      }
+    }
+
+    function updateDisplayWordFontSize() {
+      displayWord.style.fontSize = fontSize + "px";
+    }
+
+    function increaseScrollFontSize() {
+      scrollingFontSize += 2;
+      updateScrollingFontSize();
+    }
+
+    function decreaseScrollFontSize() {
+      if (scrollingFontSize > 8) {
+        scrollingFontSize -= 2;
+        updateScrollingFontSize();
+      }
+    }
+
+    function updateScrollingFontSize() {
+      fullText.style.fontSize = scrollingFontSize + "px";
+      updateFullTextDisplay();
+    }
+  </script>
+</body>
+</html>
