@@ -3,26 +3,194 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Under Construction">
-  <title>Under Construction</title>
+  <meta name="description" content="Mobile Robot Kinematics Library by Ryan Barry">
+  <title>Mobile Robot Kinematics - Ryan Barry</title>
   <link rel="stylesheet" href="/assets/css/base.css">
-  <link rel="stylesheet" href="/assets/css/under-construction.css">
+  <link rel="stylesheet" href="/assets/css/projects.css">
+
+  <!-- <link rel="stylesheet" href="/assets/css/kinematics-library.css"> -->
+  <!-- MathJax for rendering equations -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- Prism.js CSS for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+  <style>
+    .theory-equation {
+      display: block;
+      margin-left: 2em;
+      text-align: left;
+    }
+    .theory-equation mjx-container {
+      display: block !important;
+      text-align: left !important;
+      margin-left: 0 !important;
+    }
+    /* Ensure Prism styles apply */
+    pre code {
+      white-space: pre !important;
+      text-align: left !important;
+    }
+  </style>
 </head>
 <body>
-  <!-- Navbar -->
   <div id="navbar"></div>
 
-  <!-- Main Content -->
-  <div class="construction-container">
-    <h1>🚧 Under Construction 🚧</h1>
-    <p>We're working hard to bring this page to life. Please check back soon!</p>
-    <a href="https://github.com/ryan-barry-99/mobile_robot_kinematics_py" class="btn">View on Github</a>
-    <a href="/" class="btn">Return to Home</a>
-  </div>
+  <main class="container">
+    <header class="page-header">
+      <h1>Mobile Robot Kinematics Library</h1>
+      <p>A Python library for calculating the forward and inverse kinematics of fixed-wheel mobile robots.</p>
+    </header>
 
-  <!-- Footer -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Overview</span>
+        <span class="dropdown-icon">▸</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Overview</h2>
+        <p>This library supports kinematic calculations for robots with various fixed wheel configurations, for example:</n        <ul>
+          <li><strong>Differential Drive Robots:</strong> Two independently driven wheels.</li>
+          <li><strong>Omni-Wheel Robots:</strong> Four Mecanum wheels for holonomic motion.</li>
+        </ul>
+        <p>Key features include:</p>
+        <ul>
+          <li>Calculates robot velocities given wheel velocities (forward kinematics).</li>
+          <li>Determines required wheel velocities for desired robot motion (inverse kinematics).</li>
+        </ul>
+        <p>For the C++ version of this library, visit the <a class="blue-link" href="https://github.com/ryan-barry-99/mobile_robot_kinematics_cpp" target="_blank">GitHub repository</a>.</p>
+      </div>
+    </section>
+
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Theory</span>
+        <span class="dropdown-icon">▸</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Theoretical Background</h2>
+        <p>This library is based on fundamental kinematic principles:</p>
+        <ul>
+          <li><strong>Forward Kinematics:</strong> Computes the robot's velocity using the equation:
+            <div class="theory-equation">
+              \[ \dot{\zeta} = \mathbf{R}_\theta^{-1} \cdot \mathbf{J}_1^{+} \cdot \mathbf{J}_2 \cdot \phi \]
+            </div>
+          </li>
+          <li><strong>Inverse Kinematics:</strong> Calculates wheel velocities required to achieve a desired robot motion:
+            <div class="theory-equation">
+              \[ \phi = \mathbf{J}_2^{+} \cdot \mathbf{J}_1 \cdot \mathbf{R}_\theta \cdot \dot{\zeta} \]
+            </div>
+          </li>
+        </ul>
+        <p>Where:</p>
+        <ul>
+          <li>\(\dot{\zeta}\): The state vector of robot velocities:
+            <div class="theory-equation">
+              \[ \dot{\zeta} = \begin{bmatrix} \dot{x} \\ \dot{y} \\ \dot{\phi} \end{bmatrix} \]
+            </div>
+          </li>
+          <li>\(\phi\): Wheel velocity vector:
+            <div class="theory-equation">
+              \[ \phi = \begin{bmatrix} \phi_1 \\ \phi_2 \\ \vdots \\ \phi_n \end{bmatrix} \]
+            </div>
+          </li>
+          <li>\(\mathbf{R}_\theta\): Rotation matrix to account for robot orientation in the world frame:
+            <div class="theory-equation">
+              \[ \mathbf{R}_\theta = \begin{bmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{bmatrix} \]
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Implementation Examples</span>
+        <span class="dropdown-icon">▸</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Example Usage in Python</h2>
+        <pre class="language-python"><code class="language-python">
+from MobileRobotKinematics import MobileRobotKinematics
+
+# Define a simple robot with two wheels
+diffDrive = MobileRobot()
+diffDrive.leftWheel = diffDrive.add_wheel(name="leftWheel", radius=0.25, L=0.5, alpha=pi/2, beta=0)
+diffDrive.rightWheel = diffDrive.add_wheel(name="rightWheel", radius=0.25, L=0.5, alpha=3*pi/2, beta=0)
+
+# Forward Kinematics: Calculate robot velocity
+robot_velocity = diffDrive.calculate_robot_velocity([1.0, 1.2])
+print(f"Robot Velocity: {robot_velocity}")
+
+# Inverse Kinematics: Calculate wheel velocities
+wheel_speeds = diffDrive.calculate_wheel_velocities([0.5, 0.0, 0.1])
+print(f"Wheel Speeds: {wheel_speeds}")
+        </code></pre>
+
+        <h2>Example Usage in C++</h2>
+        <pre class="language-cpp"><code class="language-cpp">
+#include <vector>
+#include <cmath>
+#include <Eigen/Dense>
+#include "Wheel.hpp"
+#include "MobileRobot.hpp"
+#include <iostream>
+
+int main() {
+    // Create a Kiwi Drive robot with 3 omni-directional wheels
+    Wheel wheel1("Wheel1", 0.1, 0.2, M_PI / 3, 0.0, 0);
+    Wheel wheel2("Wheel2", 0.1, 0.2, M_PI, 0.0, 0);
+    Wheel wheel3("Wheel3", 0.1, 0.2, -M_PI / 3, 0.0, 0);
+
+    MobileRobot robot;
+    robot.addWheel(wheel1);
+    robot.addWheel(wheel2);
+    robot.addWheel(wheel3);
+
+    // Forward Kinematics: Calculate robot velocity
+    std::vector<double> wheelVelocities = {1.0, 1.2, 0.8};
+    Eigen::Vector3d robotVelocity = robot.calculateRobotVelocity(wheelVelocities);
+    std::cout << "Robot Velocity: (" << robotVelocity[0] << ", " 
+              << robotVelocity[1] << ", " << robotVelocity[2] << ")\n";
+
+    // Inverse Kinematics: Calculate wheel velocities
+    Eigen::Vector3d desiredVelocity(0.5, 0.0, 0.1);
+    std::vector<double> wheelSpeeds = robot.calculateWheelVelocities(desiredVelocity);
+    std::cout << "Wheel Speeds: ";
+    for (double speed : wheelSpeeds) {
+        std::cout << speed << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}
+        </code></pre>
+      </div>
+    </section>
+
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>GitHub Links</span>
+        <span class="dropdown-icon">▸</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Repositories</h2>
+        <ul>
+          <li><a href="https://github.com/ryan-barry-99/mobile_robot_kinematics_py" class="blue-link" target="_blank">Python Repository</a></li>
+          <li><a href="https://github.com/ryan-barry-99/mobile_robot_kinematics_cpp" class="blue-link" target="_blank">C++ Repository</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
   <div id="footer"></div>
 
+  <!-- Prism.js JavaScript for syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
   <script src="/assets/js/script.js"></script>
+  <script>
+    // Force Prism to highlight all code blocks
+    Prism.highlightAll();
+  </script>
 </body>
 </html>
