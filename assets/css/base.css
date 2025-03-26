@@ -430,3 +430,13 @@ footer a:hover {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.gold-link {
+  color: #FFD700; /* or your preferred gold shade */
+  text-decoration: none;
+}
+
+.gold-link:hover {
+  text-decoration: underline;
+  color: #FFC700; /* optional: a hover variant */
+}
