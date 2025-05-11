@@ -1,6 +1,7 @@
 \documentclass[letterpaper,10pt]{article}
 \usepackage{enumitem}
 \usepackage{geometry}
+\usepackage[none]{hyphenat}
 \geometry{
     top=0.25in,      % Top margin
     bottom=0.25in, % Bottom margin
@@ -52,6 +53,24 @@
         \setlength{\itemindent}{0em}
         #5
     \end{itemize}
+}
+\newcommand{\blankexperience}[5]{%
+    \vspace{-1mm}%
+    \noindent\textbf{#1}%
+    % Check if #2 (Company) is provided
+    \ifx&#2&
+    % If #2 is empty, skip the comma and company
+    \else
+        , \textit{#2}%
+    \fi
+    % Check if #3 (Location) is provided
+    \ifx&#3&
+    % If #3 is empty, skip the comma and location
+    \else
+        , #3%
+    \fi
+    \hfill \textit{#4} \\
+    \vspace{-1.5mm}%
 }
 
 \begin{document}
@@ -133,11 +152,9 @@
     {Rochester, NY}
     {August 2021 – May 2024}
     {
-        \item Designed PCBs for custom electric motorcycles including road superbikes and a dirt bike.
-        \item Designed a CAN interface board for a BeagleBone Black to communicate with the bike's network.
-        \item Led a team of undergraduate electrical engineers to develop a CAN based IMU board in Altium.
-        \item Derived and documented a full gate driver and control architecture for a 3-phase BLDC motor from first principles.
-        \item Designed an opto-isolated MOSFET switching array and CAN-based control system for a brushless coolant pump; mentored junior team members in implementing the full motor controller in Altium as a foundation for future high-power traction systems.
+        \item Designed a CAN interface board for a BeagleBone Black to communicate with the network of custom electric motorcycles.
+        \item Led a team of undergraduate electrical engineers to develop a CAN based IMU board in Altium. 
+        \item Derived and documented a full gate driver and control architecture for a 3-phase BLDC motor from first principles; mentored junior team members in implementing the full motor controller in Altium for a brushless coolant pump as a foundation for future high-power traction systems.
 
     }
 
@@ -154,28 +171,28 @@
         \item Developed an acoustic range and angle of arrival regression model to support transfer learning hypothesis.
     }
 
-\experience
+\blankexperience
     {Product Engineering Co-op}
     {The Raymond Corporation}
     {Greene, NY}
     {January 2022 – July 2022}
     {
-        \item Programmed PLC-based test fixture with touchscreen UI for reliability testing of forklift control cables.
+        % \item Programmed PLC-based test fixture with touchscreen UI for reliability testing of forklift control cables.
         
-        \item Supported CAN system emulation for motor controller validation.
+        % \item Supported CAN system emulation for motor controller validation.
         % \item Programmed a PLC based robotic test fixture with a touch LCD to stress test forklift control handle cables.
 
         % \item Researched and documented the adaptation of a software application to emulate CAN functionality for motor controllers on PCBs used in forklift test fixtures.
 
     }
 
-\experience
+\blankexperience
     {Electrical Engineering Intern}
     {Davis Standard LLC}
     {Fulton, NY}
     {May 2021 – August 2021}
     {
-        \item Revised schematics and drawings in AutoCAD; developed early prototype for 3D printer-inspired polymer extruder.
+        % \item Revised schematics and drawings in AutoCAD; developed early prototype for 3D printer-inspired polymer extruder.
         
         % \item Revised wiring schematic and electrical panel drawings in AutoCAD.
 
@@ -210,16 +227,24 @@
     }
     
 \experience
+    {Multi-Agent Reinforcement Learning for Pacman Capture the Flag}
+    {}
+    {}
+    {November 2023 – December 2023}
+    {
+        \item \href{https://github.com/ryan-barry-99/AI_Explorations_Pacman_Capture_the_Flag}{SARSA-trained agents with shared memory and reward shaping; reached tournament finals.}
+    }
+
+
+    
+\experience
     {Air Hockey Robot}
     {}
     {}
     {October 2023 – December 2023}
     {
-        \item \href{https://ryanbarry.me/projects/robotics/air-hockey-robot/}{Designed a 3-DOF air hockey robot using YOLOv8 for puck detection and LSTM-based trajectory prediction.}
+        \item \href{https://ryanbarry.me/projects/robotics/air-hockey-robot/}{Designed a 3-DOF air hockey robot with custom YOLOv8 puck detection and LSTM-based trajectory prediction.}
     }
-
-
-    
 % \experience
 %     {Multimodal Fusion Architecture for IMDb Rating Estimation}
 %     {}
@@ -232,14 +257,16 @@
 
     
 \experience
-    {\href{https://github.com/ryan-barry-99/Trajectory-Matching-Omnidirectional-Robot/blob/main/Real_time_Trajectory_Matching_of_Moving_Objects.pdf}{Trajectory Matching Omnidirectional Mobile Robot}}
+    {\href{https://ryanbarry.me/projects/robotics/omnidirectional-robot/}{Full-Stack Robot for Real-Time Object Interception}}
     {}
     {}
     {February 2023 – April 2023}
     {
         % \item Designed and programmed an omnidirectional robot to serve as a modular research platform.
 
-        \item \href{https://github.com/ryan-barry-99/Trajectory-Matching-Omnidirectional-Robot/tree/main/}{Designed and programmed a holonomic robot with real-time YOLOv8-based object tracking and trajectory alignment.}
+        % \item \href{https://github.com/ryan-barry-99/Trajectory-Matching-Omnidirectional-Robot/tree/main/}{Designed and programmed a holonomic robot with real-time YOLOv8-based object tracking and trajectory alignment.}
+        \item \href{https://github.com/ryan-barry-99/Trajectory-Matching-Omnidirectional-Robot/tree/main/}{Designed and built a custom omnidirectional robot—including CAD, 3D-printed omniwheels, electronics, and ROS.}
+        \item Implemented object detection and 3D velocity estimation for real-time trajectory matching of a free-floating balloon.
     }
     
 \experience
@@ -248,7 +275,7 @@
     {}
     {November 2022 – April 2023}
     {
-        \item \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Designed and soldered a PCB to integrate power distribution, propulsion and rudder actuation, and 7 onboard sensors.}
+        \item \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Integrated a 7-sensor perception suite with power distribution and propulsion control on a custom PCB.}
         
         % \item \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Designed and manufactured a motherboard PCB capable of managing power distribution, motor control, servo control, interfacing with two cameras, and integrating five sensors.}
     }
@@ -263,12 +290,12 @@
     }
     
 \experience
-    {Autonomous Nerf Blaster Mobile Robot}
+    {Nerf Mobile Robot with Autonomous Targeting}
     {}
     {}
     {November 2021 – December 2021}
     {
-        \item  Created a mobile robot with a modified Nerf blaster to autonomously track and fire at a moving shield.
+        \item Built a mobile robot with autonomous tracking and firing at a moving shield using a modified Nerf blaster.
     }
 
 
