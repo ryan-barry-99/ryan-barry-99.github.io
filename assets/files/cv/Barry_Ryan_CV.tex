@@ -53,7 +53,7 @@
         \setlength{\itemindent}{0em}
         #5
     \end{itemize}
-    \vspace{2mm}
+    \vspace{1mm}
 }
 \newcommand{\blankexperience}[5]{%
     \vspace{-1mm}%
@@ -82,6 +82,9 @@
     \textbf{\huge Ryan Barry} \\
     \vspace{1mm}
     \href{http://ryanbarry.me}{ryanbarry.me}
+    \hspace{0.2em} \vline \hspace{0.2em}
+    \vspace{1mm}
+    \href{http://github.com/ryan-barry-99}{github.com/ryan-barry-99}
     \hspace{0.2em} \vline \hspace{0.2em}
     \href{mailto:ryanbarry.engineering@gmail.com}{ryanbarry.engineering@gmail.com}
     \hspace{0.2em} \vline \hspace{0.2em}
@@ -158,15 +161,15 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
     }
 
 \experience
-    {\href{https://github.com/ryan-barry-99/rovers}{Software Technical Lead}}
-    {\href{https://github.com/ryan-barry-99/rovers}{RIT University Rover Challenge Team}}
+    {\href{https://ryanbarry.me/projects/robotics/rover/}{Software Technical Lead}}
+    {\href{https://ryanbarry.me/projects/robotics/rover/}{RIT University Rover Challenge Team}}
     {Rochester, NY}
     {June 2023 – May 2024}
     {
         \item Spearheaded software architecture development for autonomous and remote operation of a robotic rover.
         \item Directed a team of engineers to develop and test software for all subsystems of RIT’s rover.
         \item Integrated a Python-based ROS application with embedded C++ code for peripheral control via CAN.
-        \item \href{https://ryanbarry.me/projects/robotics/rover/}{More at https://ryanbarry.me/projects/robotics/rover/}
+        % \item \href{https://ryanbarry.me/projects/robotics/rover/}{More at https://ryanbarry.me/projects/robotics/rover/}
     }
 
 \experience
@@ -190,31 +193,31 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
         \item Developed proof of concept synthetic data pipeline for active acoustic ML in unmanned undersea vehicles.
         \item Designed Python application for scenario development and interface with UUV simulation software.
         \item Developed an acoustic range and angle of arrival regression model to support transfer learning hypothesis.
-        \item \href{https://ryanbarry.me/projects/ai-ml/sonar-data-pipeline/}{More at https://ryanbarry.me/projects/ai-ml/sonar-data-pipeline/}
+        % \item \href{https://ryanbarry.me/projects/ai-ml/sonar-data-pipeline/}{More at https://ryanbarry.me/projects/ai-ml/sonar-data-pipeline/}
     }
 
-\blankexperience
+\experience
     {Product Engineering Co-op}
     {The Raymond Corporation}
     {Greene, NY}
     {January 2022 – July 2022}
     {
-        % \item Programmed PLC-based test fixture with touchscreen UI for reliability testing of forklift control cables.
+        \item Programmed PLC-based test fixture with touchscreen UI for reliability testing of forklift control cables.
         
-        % \item Supported CAN system emulation for motor controller validation.
+        \item Supported CAN system emulation for motor controller validation.
         % \item Programmed a PLC based robotic test fixture with a touch LCD to stress test forklift control handle cables.
 
         % \item Researched and documented the adaptation of a software application to emulate CAN functionality for motor controllers on PCBs used in forklift test fixtures.
 
     }
 
-\blankexperience
+\experience
     {Electrical Engineering Intern}
     {Davis Standard LLC}
     {Fulton, NY}
     {May 2021 – August 2021}
     {
-        % \item Revised schematics and drawings in AutoCAD; developed early prototype for 3D printer-inspired polymer extruder.
+        \item Revised schematics and drawings in AutoCAD; developed early prototype for 3D printer-inspired polymer extruder.
         
         % \item Revised wiring schematic and electrical panel drawings in AutoCAD.
 
@@ -225,7 +228,7 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
 
 % Projects
 \vspace{-0.5em}
-\heading{Projects}
+\heading{Highlighted Projects}
 
 % \experience
 %     {Custom Hybrid Electric Wheelchair Attachment}
@@ -237,7 +240,7 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
 %     }
     
 \experience
-    {Open-Source Universal Kinematic Libraries for Generic Robots}
+    {\href{https://ryanbarry.me/projects/robotics/kinematics/}{Open-Source Universal Kinematic Libraries for Generic Robots}}
     {}
     {}
     {September 2023 – Present}
@@ -246,7 +249,7 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
         \item Enabled dynamic configuration from DH parameters or wheel layouts to support arbitrary robot topologies without rewriting core math.
         \item Implemented forward velocity kinematics and inverse kinematics for mobile platforms using wheel geometry
         \item Solved numerical inverse kinematics using Jacobian pseudo-inverse methods with tolerance-based convergence on joint angles from target end-effector pose for arbitrary robot configurations.
-        \item \href{https://ryanbarry.me/projects/robotics/kinematics/}{More at https://ryanbarry.me/projects/robotics/kinematics/}
+        % \item \href{https://ryanbarry.me/projects/robotics/kinematics/}{More at https://ryanbarry.me/projects/robotics/kinematics/}
         % \item \href{https://github.com/ryan-barry-99/mobile_robot_kinematics_cpp}{Developed Python and C++ libraries for forward and inverse kinematic calculations of any fixed-wheeled mobile robot.}
         
         % \item \href{https://github.com/ryan-barry-99/arm_robot_kinematics_cpp/tree/main}{Developed Python and C++ libraries for forward and inverse kinematic calculations of any arm robot configuration.}
@@ -268,15 +271,16 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
 
     
 \experience
-    {Air Hockey Robot}
+    {\href{https://ryanbarry.me/projects/robotics/air-hockey-robot/}{Air Hockey Robot}}
     {}
     {}
     {October 2023 – December 2023}
     {
         \item Designed a custom 3D-printed 3-DOF planar robot to play air hockey against a human via an overhead camera.
         \item Curated a custom dataset of over 26,000 images to train a YOLOv8 model for puck and table keypoint detection.
-        \item Predicted puck trajectory and impact location using a linear physics model and an LSTM-based neural network, and used an inverse kinematics lookup table to intercept its path.
-        \item More at \href{https://ryanbarry.me/projects/robotics/air-hockey-robot/}{https://ryanbarry.me/projects/robotics/air-hockey-robot/}
+        \item Predicted puck trajectory and impact location using a linear physics model and an LSTM-based neural network.
+        \item Generated an IK lookup table via my custom kinematics library to safely constrain interception points, preventing end-effector collisions with the table edge.
+        % \item More at \href{https://ryanbarry.me/projects/robotics/air-hockey-robot/}{https://ryanbarry.me/projects/robotics/air-hockey-robot/}
     }
 
 
@@ -293,61 +297,95 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
         \item Designed custom chassis design with 3D-printable omni wheels in SOLIDWORKS.
         \item Trained a custom YOLOv8 model to detect balloons and calculated their 3D velocity with a stereo camera using weighted difference method over a buffer of frames.
         \item Developed a ROS network for kinematic motion control and sensor integration.
-        \item More at \href{https://ryanbarry.me/projects/robotics/omnidirectional-robot/}{https://ryanbarry.me/projects/robotics/omnidirectional-robot/}
+        % \item More at \href{https://ryanbarry.me/projects/robotics/omnidirectional-robot/}{https://ryanbarry.me/projects/robotics/omnidirectional-robot/}
     }
     
-\experience
-    {\href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Underwater Robot Motherboard PCB}}
-    {}
-    {}
-    {November 2022 – April 2023}
-    {
-        \item Integrated a 7-sensor perception suite with power distribution and propulsion control on a custom PCB.
-        \item Sensor peripherals include: 2 cameras, dissolved oxygen sensor, IMU, pH probe, salinity sensor, thermistor.
-        \item Ethernet controller for high speed data transfer to external laptop.
-        \item Power regulation for 11V, 5V, and 3.3V rails from a 12V nominal battery.
-        \item High-current H-Bridge for brushed DC motor control of a propeller. Additionally a servo header for rudder control.
-        \item Designed using Altium Designer and hand soldered SMT components.
-        \item More at \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}
+% \experience
+%     {\href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Underwater Robot Motherboard PCB}}
+%     {}
+%     {}
+%     {November 2022 – April 2023}
+%     {
+%         \item Integrated a 7-sensor perception suite with power distribution and propulsion control on a custom PCB.
+%         \item Sensor peripherals include: 2 cameras, dissolved oxygen sensor, IMU, pH probe, salinity sensor, thermistor.
+%         \item Ethernet controller for high speed data transfer to external laptop.
+%         \item Power regulation for 11V, 5V, and 3.3V rails from a 12V nominal battery.
+%         \item High-current H-Bridge for brushed DC motor control of a propeller. Additionally a servo header for rudder control.
+%         \item Designed using Altium Designer and hand soldered SMT components.
+%         \item More at \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}
         
-        % \item \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Designed and manufactured a motherboard PCB capable of managing power distribution, motor control, servo control, interfacing with two cameras, and integrating five sensors.}
-    }
+%         % \item \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Designed and manufactured a motherboard PCB capable of managing power distribution, motor control, servo control, interfacing with two cameras, and integrating five sensors.}
+%     }
     
-\experience
-    {Collaborative Robot Ball-and-Cup Game}
-    {}
-    {}
-    {February 2023 – April 2023}
-    {
-        \item Built a ROS-based interactive game for the Baxter robot using YOLOv6 and DeepSORT with occlusion-aware ID tracking; designed a custom parallel-jaw-compatible gripper for robust cup manipulation.
-    }
+% \experience
+%     {Collaborative Robot Ball-and-Cup Game}
+%     {}
+%     {}
+%     {February 2023 – April 2023}
+%     {
+%         \item Built a ROS-based interactive game for the Baxter robot using YOLOv6 and DeepSORT with occlusion-aware ID tracking; designed a custom parallel-jaw-compatible gripper for robust cup manipulation.
+%     }
     
 
+
+% % \experience
+% %     {Multimodal Fusion Architecture for IMDb Rating Estimation}
+% %     {}
+% %     {}
+% %     {April 2023}
+% %     {
+% %         \item Built a PyTorch model combining BERT and a CNN for multimodal regression on IMDb ratings from movie posters and text descriptions.
+% %         \item Achieved 81.3\% validation accuracy for predictions within 0.3 rating margin on a real-world dataset.
+% %     }
 
 % \experience
-%     {Multimodal Fusion Architecture for IMDb Rating Estimation}
+%     {Nerf Mobile Robot with Autonomous Targeting}
 %     {}
 %     {}
-%     {April 2023}
+%     {November 2021 – December 2021}
 %     {
-%         \item Built a PyTorch model combining BERT and a CNN for multimodal regression on IMDb ratings from movie posters and text descriptions.
-%         \item Achieved 81.3\% validation accuracy for predictions within 0.3 rating margin on a real-world dataset.
+%         \item Built a mobile robot with autonomous tracking and firing at a moving shield using a modified Nerf blaster.
+%         \item Utilized bounding box color tracking for target localization and aiming.
+%         \item Controlled trigger and flywheel with dedicated servo and logic-controlled high-side power switch.
 %     }
 
-\experience
-    {Nerf Mobile Robot with Autonomous Targeting}
-    {}
-    {}
-    {November 2021 – December 2021}
-    {
-        \item Built a mobile robot with autonomous tracking and firing at a moving shield using a modified Nerf blaster.
-        \item Utilized bounding box color tracking for target localization and aiming.
-        \item Controlled trigger and flywheel with dedicated servo and logic-controlled high-side power switch.
-    }
+\vspace{1em}
+{\Large \noindent\textbf{Other Notable Projects}} \\
+\vspace{-1em}
+\begin{itemize}
+    \item In progress design of a non-invasive wheelchair attachment for low drag, hybrid manual and powered control.
+    \item \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Robot motherboard PCB with 7 sensor perception suite, power distribution, and propultion control.}
+    \item EMG signal live gesture classification pipeline using custom model trained from self-collected bio signals.
+    \item Interactive ball-and-cup game for Baxter robot using object detection and tracking with occlusion aware ID persistence.
+    \item Nerf mobile robot with autonomous targeting and firing system.
+\end{itemize}
+% \experience
+%     {\href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Underwater Robot Motherboard PCB}}
+%     {}
+%     {}
+%     {November 2022 – April 2023}
+%     {
+%         \item Integrated a 7-sensor perception suite with power distribution and propulsion control on a custom PCB.
+        
+%         % \item \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Designed and manufactured a motherboard PCB capable of managing power distribution, motor control, servo control, interfacing with two cameras, and integrating five sensors.}
+%     }
 
+% \experience
+%     {Collaborative Robot Interactive Ball-and-Cup Game}
+%     {}
+%     {}
+%     {February 2023 – April 2023}
+%     {
+%         \item Built a ROS-based game for Baxter using YOLOv6 and DeepSORT with occlusion-aware ID tracking.
+%     }
 
-
-
-
+% \experience
+%     {Nerf Mobile Robot with Autonomous Targeting}
+%     {}
+%     {}
+%     {November 2021 – December 2021}
+%     {
+%         \item Built a mobile robot with autonomous tracking and firing at a moving shield using a modified Nerf blaster.
+%     }
 
 \end{document}
