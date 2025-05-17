@@ -10,6 +10,11 @@
     position: relative;
   }
   
+  .banner {
+    background: linear-gradient(to bottom, #1a1a1a, #747373);
+    color: white;
+  }
+  
   .banner-content {
     max-width: 800px;
     margin: 0 auto;
