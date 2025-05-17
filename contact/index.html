@@ -36,17 +36,17 @@
 
         <label for="message">Message:</label>
         <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
-
+        <!-- Success and Error Messages -->
+        <div id="form-success" style="display: none; margin-top: 20px; color: green;">
+          <p>Thank you! Your message has been sent successfully.</p>
+        </div>
+        <div id="form-error" style="display: none; margin-top: 20px; color: red;">
+          <p>Oops! Something went wrong. Please try again later.</p>
+        </div>
         <button type="submit">Send Message</button>
       </form>
 
-      <!-- Success and Error Messages -->
-      <div id="form-success" style="display: none; margin-top: 20px; color: green;">
-        <p>Thank you! Your message has been sent successfully.</p>
-      </div>
-      <div id="form-error" style="display: none; margin-top: 20px; color: red;">
-        <p>Oops! Something went wrong. Please try again later.</p>
-      </div>
+      
     </section>
   </div>
 
