@@ -103,6 +103,7 @@ Master of Science in Electrical Engineering \hfill Cumulative GPA: 3.92 \\
 \textit{Specialization in Robotics and AI/ML} \\ \\
 \noindent\textbf{Rochester Institute of Technology}, Rochester, NY \\
 Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill Cumulative GPA: 3.86 \\ 
+\textbf{Tau Beta Pi Engineering Honor Society} \\
 % \textbf{Applicable Courses:} Robotic-Systems, Principles-of-Robotics, Advanced-Robotics, Intro-to-Artificial-Intelligence, AI-Explorations, Biorobotics/Machine-Learning, Deep-Learning, Robot-Perception
 
 
@@ -135,7 +136,7 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
     {Bryan, TX}
     {March 2025 – Present}
     {
-        \item Engineering fault tolerant robotic manipulators for use in contracted space missions, designed for environmental robustness and modularity.
+        \item Designed fault-tolerant robotic manipulators for microgravity environments, emphasizing modularity and resilience to extreme temperature shifts and radiation.
         \item Designed custom PCBs in Altium for testing and spaceflight applications.
         \item Developed firmware and software in ROS, C++, and Python for actuator control and status monitoring.
         \item Built real-time data acquisition tools in C++ and Python for diagnostic logging, fault response validation, and performance analysis.
@@ -148,7 +149,7 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
     {August 2023 – May 2024}
     {
         \item  Developed a custom reinforcement learning (RL) environment in ROS and Gazebo for terrain-aware velocity control of a quadruped robot in a physics-based simulator.
-        \item  Implemented Proximal Policy Optimization (PPO) from scratch in PyTorch with LSTM-based policy and value networks; built a custom trajectory buffer and integrated the full RL pipeline into the ROS-based system.
+        \item  Built a custom PPO reinforcement learner in PyTorch with LSTM-based policy and value networks; integrated the full pipeline into ROS for trajectory planning.
     }
     
 \experience
@@ -166,9 +167,8 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
     {Rochester, NY}
     {June 2023 – May 2024}
     {
-        \item Spearheaded software architecture development for autonomous and remote operation of a robotic rover.
-        \item Directed a team of engineers to develop and test software for all subsystems of RIT’s rover.
-        \item Integrated a Python-based ROS application with embedded C++ code for peripheral control via CAN.
+        \item Led architecture and full-stack ROS software development for an autonomous planetary rover; managed subsystem integration and testing across a 5-person team.
+        \item Integrated a Python ROS application with embedded C++ microcontrollers via CAN to control distributed subsystems.
         \item Led cross-functional design reviews to ensure electromechanical subsystems aligned with software architecture requirements.
         % \item \href{https://ryanbarry.me/projects/robotics/rover/}{More at https://ryanbarry.me/projects/robotics/rover/}
     }
@@ -181,7 +181,7 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
     {
         \item Designed a CAN interface board for a BeagleBone Black to communicate with the network of custom electric motorcycles.
         \item Led a team of undergraduate electrical engineers to develop a CAN based IMU board in Altium. 
-        \item Derived and documented a full gate driver and control architecture for a 3-phase BLDC motor from first principles; mentored junior team members in implementing the full motor controller in Altium for a brushless coolant pump as a foundation for future high-power traction systems.
+        \item Engineered and documented gate driver + control architecture for a 3-phase BLDC motor from first principles, enabling powertrain control for brushless coolant pump; mentored junior team members in implementing the full motor controller in Altium as a foundation for future high-power traction systems.
 
     }
 
@@ -191,7 +191,7 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
     {University Park, PA}
     {May 2023 – August 2023}
     {
-        \item Developed proof of concept synthetic data pipeline for active acoustic ML in unmanned undersea vehicles.
+        \item Built synthetic data generation pipeline for active acoustic ML models in unmanned undersea vehicles (UUVs), reducing dependency on scarce labeled datasets.
         \item Designed Python application for scenario development and interface with UUV simulation software.
         \item Developed an acoustic range and angle of arrival regression model to support transfer learning hypothesis.
         % \item \href{https://ryanbarry.me/projects/ai-ml/sonar-data-pipeline/}{More at https://ryanbarry.me/projects/ai-ml/sonar-data-pipeline/}
@@ -229,7 +229,10 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
 
 % Projects
 \vspace{-0.5em}
-\heading{Highlighted Projects}
+\heading{Projects}
+% \vspace{1em}
+{\Large \noindent\textbf{Highlighted Projects}} \\
+% \vspace{-1em}
 
 % \experience
 %     {Custom Hybrid Electric Wheelchair Attachment}
@@ -265,7 +268,8 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
         \item Developed a dual-agent Q-Learning RL system with custom reward shaping to coordinate offensive and defensive Pacman agents in a 2v2 Capture the Flag game.
         \item Engineered a shared memory mechanism for real-time inter-agent communication, enabling cooperative ambush behavior and dynamic role adaptation.
         \item Implemented custom learning and inference logic without external ML libraries; stored and updated network weights in a script-local dictionary.
-        \item Trained agents via self-play and against external algorithms for generalization; reached tournament finals before final-game regression bug impacted behavior.
+        \item Trained agents via self-play and against external algorithms for generalization.
+        \item Reached tournament finals before final-game regression bug impacted behavior.
         % \item \href{https://github.com/ryan-barry-99/AI_Explorations_Pacman_Capture_the_Flag}{SARSA-trained agents with shared memory and reward shaping; reached tournament finals.}
     }
 
@@ -350,15 +354,28 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
 %         \item Controlled trigger and flywheel with dedicated servo and logic-controlled high-side power switch.
 %     }
 
-\vspace{1em}
-{\Large \noindent\textbf{Other Notable Projects}} \\
+% \vspace{1em}
+% {\Large \noindent\textbf{Additional Projects}} \\
+% \vspace{-1em}
+% \begin{itemize}
+%     \item In progress design of a non-invasive wheelchair attachment for low drag, hybrid manual and powered control.
+%     \item \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Robot motherboard PCB with 7 sensor perception suite, power distribution, and propultion control.}
+%     \item EMG signal live gesture classification pipeline using custom model trained from self-collected bio signals.
+%     \item Interactive ball-and-cup game for Baxter robot using object detection and tracking with occlusion aware ID persistence.
+%     \item Nerf mobile robot with autonomous targeting and firing system.
+% \end{itemize}
+{\Large \noindent\textbf{Additional Projects}} \\
 \vspace{-1em}
 \begin{itemize}
-    \item In progress design of a non-invasive wheelchair attachment for low drag, hybrid manual and powered control.
-    \item \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Robot motherboard PCB with 7 sensor perception suite, power distribution, and propultion control.}
-    \item EMG signal live gesture classification pipeline using custom model trained from self-collected bio signals.
-    \item Interactive ball-and-cup game for Baxter robot using object detection and tracking with occlusion aware ID persistence.
-    \item Nerf mobile robot with autonomous targeting and firing system.
+    \item \textbf{Wheelchair Attachment Prototype \textit{(In Progress)}:} Prototyping a non-invasive, low-drag wheelchair add-on with hybrid manual and powered control.
+    
+    \item \textbf{Underwater Robot Motherboard PCB \textit{(Spring 2023)}:} \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Designed and integrated a PCB with a 7-sensor perception suite, power distribution, and propulsion control.}
+    
+    \item \textbf{EMG Gesture Classification Pipeline \textit{(Spring 2023)}:} Built a real-time gesture classifier using a custom-trained neural network on self-collected EMG biosignals.
+    
+    \item \textbf{Baxter Robot Interactive Game \textit{(Fall 2022)}:} Developed a ball-and-cup game using object tracking and occlusion-aware ID persistence.
+    
+    \item \textbf{Autonomous Nerf Sentry \textit{(Fall 2021)}:} Designed a mobile robot with onboard targeting, tracking, and automated firing system.
 \end{itemize}
 % \experience
 %     {\href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{Underwater Robot Motherboard PCB}}
