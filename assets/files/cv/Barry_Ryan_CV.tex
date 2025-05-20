@@ -265,28 +265,27 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
     {}
     {November 2023 – December 2023}
     {
-        \item Developed a dual-agent Q-Learning RL system with custom reward shaping to coordinate offensive and defensive Pacman agents in a 2v2 Capture the Flag game.
-        \item Engineered a shared memory mechanism for real-time inter-agent communication, enabling cooperative ambush behavior and dynamic role adaptation.
-        \item Implemented custom learning and inference logic without external ML libraries; stored and updated network weights in a script-local dictionary.
-        \item Trained agents via self-play and against external algorithms for generalization.
-        \item Reached tournament finals before final-game regression bug impacted behavior.
-        % \item \href{https://github.com/ryan-barry-99/AI_Explorations_Pacman_Capture_the_Flag}{SARSA-trained agents with shared memory and reward shaping; reached tournament finals.}
+        \item Developed a dual-agent Q-learning system with handcrafted reward shaping and dense feature vectors to coordinate offensive and defensive roles in a 2v2 Capture the Flag game.
+        \item Built a shared memory mechanism for real-time inter-agent communication, enabling emergent ambush and retreat behaviors.
+        \item Implemented all learning and inference logic from scratch in a single script without external ML libraries; stored and updated network weights in script-local dictionaries.
+        \item Trained agents via self-play and curriculum learning against rotating baseline opponents across randomized maps.
+        \item Reached tournament finals; a late-stage regression bug in retreat logic impacted final match performance.
+   % \item \href{https://github.com/ryan-barry-99/AI_Explorations_Pacman_Capture_the_Flag}{SARSA-trained agents with shared memory and reward shaping; reached tournament finals.}
     }
 
 
-    
 \experience
     {\href{https://ryanbarry.me/projects/robotics/air-hockey-robot/}{Air Hockey Robot}}
     {}
     {}
     {October 2023 – December 2023}
     {
-        \item Designed a custom 3D-printed 3-DOF planar robot to play air hockey against a human via an overhead camera.
-        \item Curated a custom dataset of over 26,000 images to train a YOLOv8 model for puck and table keypoint detection.
-        \item Predicted puck trajectory and impact location using a linear physics model and an LSTM-based neural network.
-        \item Generated an IK lookup table via my custom kinematics library to safely constrain interception points, preventing end-effector collisions with the table edge.
-        % \item More at \href{https://ryanbarry.me/projects/robotics/air-hockey-robot/}{https://ryanbarry.me/projects/robotics/air-hockey-robot/}
+        \item Engineered a full-stack robotic system with a 3-DOF planar arm, overhead camera, and real-time closed-loop inference.
+        \item Collected and labeled 26,627 training images to train a YOLOv8 model from scratch for puck and keypoint detection; validated with PR curves and batch predictions.
+        \item Predicted puck trajectories using a physics model and an LSTM trained on bidirectional crossing sequences via data augmentation; tuned for end-effector interception within a 4-inch spatial margin.
+        \item Deployed a safety-bounded inverse kinematics controller with joint angle lookup at 57 FPS inference throughput, bottlenecked only by the 60 FPS camera.
     }
+
 
 
     
