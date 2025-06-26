@@ -123,7 +123,7 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
 \heading{Technical Skills}
 \vspace{-1mm}%
 \noindent\textbf{Languages:} Assembly, C/C++, HTML/CSS, JavaScript, PLC Ladder Logic, Python \\
-\textbf{Libraries \& Tools:} CUDA, Git, Jupyter, Keras, NumPy, OpenCV, Pandas, PyTorch, ROS, Scikit-Learn, TensorFlow \\
+\textbf{Libraries \& Tools:} CUDA, Git, Jupyter, Keras, NumPy, OpenCV, Pandas, PyTorch, ROS/ROS2, Scikit-Learn, TensorFlow \\
 \textbf{Software:} Altium Designer, AutoCAD, Creo, Inventor, LTSpice, MATLAB, SOLIDWORKS \\
 \textbf{Hardware:} Microcontrollers, Motor/Sensor Control, PCB Design, SMT \& TH Soldering, 3D Printing \\
 
@@ -138,8 +138,9 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
     {
         \item Designed fault-tolerant robotic manipulators for microgravity environments, emphasizing modularity and resilience to extreme temperature shifts and radiation.
         \item Designed custom PCBs in Altium for testing and spaceflight applications.
-        \item Developed firmware and software in ROS, C++, and Python for actuator control and status monitoring.
-        \item Built real-time data acquisition tools in C++ and Python for diagnostic logging, fault response validation, and performance analysis.
+        \item Built a Python SDK atop an existing ROS2 EtherCAT wrapper to expose a joint-indexed API for real-time telemetry and multi-mode actuator control (e.g., position, torque, current, impedance). Auto-parses Xacro files to map joint IDs, load actuator-specific coefficients, and structure PDO data into clean, queryable dictionaries. Fully abstracts ROS2, enabling intuitive scripting for prototyping and environmental testing, and reducing setup time by hours across the lab.
+        \item Built real-time data acquisition tools using embedded C++ and Python, enabling reliable telemetry streaming from microcontrollers to host machines for diagnostic logging, fault response validation, and system performance analysis.
+
     }
 
 \experience
@@ -212,18 +213,18 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
 
     }
 
-\experience
-    {Electrical Engineering Intern}
-    {Davis Standard LLC}
-    {Fulton, NY}
-    {May 2021 – August 2021}
-    {
-        \item Revised schematics and drawings in AutoCAD; developed early prototype for 3D printer-inspired polymer extruder.
+% \experience
+%     {Electrical Engineering Intern}
+%     {Davis Standard LLC}
+%     {Fulton, NY}
+%     {May 2021 – August 2021}
+%     {
+%         \item Revised schematics and drawings in AutoCAD; developed early prototype for 3D printer-inspired polymer extruder.
         
-        % \item Revised wiring schematic and electrical panel drawings in AutoCAD.
+%         % \item Revised wiring schematic and electrical panel drawings in AutoCAD.
 
-        % \item Researched and developed proof of concept prototype for an industrial polymer extruder modeled after 3D Printers to be used for automated splice line placement along material necking border.
-    }
+%         % \item Researched and developed proof of concept prototype for an industrial polymer extruder modeled after 3D Printers to be used for automated splice line placement along material necking border.
+%     }
     
 
 
