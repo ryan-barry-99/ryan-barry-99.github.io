@@ -52,7 +52,7 @@ a {
   flex-direction: row; /* Places items horizontally */
   align-items: center; /* Vertically centers the icons */
   justify-content: flex-start; /* Aligns items to the left */
-  margin-top: 232px; /* Positioning within the sidebar */
+  margin-top: 275px; /* Positioning within the sidebar */
   transform: translateX(-100px);
   gap: 0px;
   text-decoration: none;
