@@ -1,0 +1,56 @@
+/* Data Visualizer Styles */
+.visualizer-container {
+    margin: 2rem 0;
+  }
+  
+  .visualizer-container .section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .visualizer-container label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .visualizer-container input[type="file"],
+  .visualizer-container input[type="number"],
+  .visualizer-container select {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .visualizer-container input[type="number"] {
+    max-width: 100px;
+  }
+  
+  .visualizer-container input[type="checkbox"] {
+    margin-right: 0.5rem;
+    transform: translateY(2px);
+  }
+  
+  /* Select2 overrides */
+  .select2-container--default .select2-selection--multiple {
+    min-height: 38px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-color: #2684ff;
+    box-shadow: 0 0 0 1px #2684ff;
+  }
+  
+  #visualizer-graph {
+    width: 100%;
+    height: 600px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fafafa;
+  }
+  

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CSV Data Visualizer with series-level selection and threshold-based error health shading">
+  <title>CSV Data Visualizer</title>
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/projects.css">
+  <link rel="stylesheet" href="/assets/css/project-splash.css">
+  <link rel="stylesheet" href="/assets/css/data-visualizer.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+  <style>
+    .file-tag { display:inline-block; background:#e0f7fa; border:1px solid #00796b; border-radius:16px; padding:4px 12px; margin:4px; }
+    .file-tag .remove-file { margin-left:8px; color:#00796b; font-weight:bold; cursor:pointer; }
+    #visualizer-graph, #error-graph { width:100%; height:400px; margin-top:1rem; border:1px solid #e0e0e0; border-radius:4px; background:#fafafa; }
+    .section { margin-bottom:1rem; }
+    .flex-row { display:flex; flex-wrap:wrap; align-items:flex-end; }
+    .flex-col { flex:1; min-width:150px; }
+    .flex-col + .flex-col { margin-left:1rem; }
+    label { display:block; margin-bottom:0.25rem; font-weight:500; }
+    input[type="number"] { width:100%; padding:4px; }
+    button { padding:6px 12px; background:#00796b; color:#fff; border:none; border-radius:4px; cursor:pointer; }
+    button:hover { background:#005a4f; }
+  </style>
+</head>
+<body>
+  <div id="navbar"></div>
+  <main class="container">
+    <header class="page-header">
+      <h1>CSV Data Visualizer</h1>
+      <p>Upload CSVs, select series to plot, apply filters, and perform threshold-based error shading.</p>
+    </header>
+
+    <div class="project-container-alt visualizer-container">
+      <div class="section">
+        <label for="csvFiles">Upload CSV File(s):</label>
+        <input type="file" id="csvFiles" accept=".csv" multiple />
+      </div>
+      <div id="file-list" class="section">No files loaded.</div>
+
+      <div class="section">
+        <label for="seriesSelect">Select Series to Plot:</label>
+        <select id="seriesSelect" multiple style="width:100%;"></select>
+      </div>
+
+      <div class="section flex-row">
+        <div class="flex-col">
+          <label for="filterType">Filter Type:</label>
+          <select id="filterType">
+            <option value="none">None</option>
+            <option value="rolling">Rolling Avg</option>
+            <option value="ema">EMA</option>
+            <option value="median">Median</option>
+          </select>
+        </div>
+        <div class="flex-col">
+          <label for="windowSize">Window Size:</label>
+          <input type="number" id="windowSize" value="30" min="1" />
+        </div>
+        <div class="flex-col" style="flex:0 0 auto; display:flex; align-items:center;">
+          <input type="checkbox" id="normalizeTime" />
+          <label for="normalizeTime" style="margin-left:0.5rem; display:inline;">Normalize Time</label>
+        </div>
+      </div>
+
+      <div id="visualizer-graph"></div>
+
+      <div class="section">
+        <h3>Error</h3>
+        <div class="flex-row">
+          <div class="flex-col" style="flex:0 0 auto; display:flex; align-items:center;">
+            <input type="checkbox" id="swapError" />
+            <label for="swapError" style="margin-left:0.5rem;">Swap Series</label>
+          </div>
+          <div class="flex-col">
+            <label for="errType">Error Type:</label>
+            <select id="errType">
+              <option value="difference">Signed Diff</option>
+              <option value="absolute">Mean Absolute Error</option>
+              <option value="squared">Mean Squared Error</option>
+            </select>
+          </div>
+          <div class="flex-col">
+            <label for="errThreshold">Threshold:</label>
+            <input type="number" id="errThreshold" value="0" step="any" />
+          </div>
+        </div>
+      </div>
+      <div id="error-graph"></div>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <!-- Dependencies -->
+  <script src="/assets/js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <script>
+    const dataFrames = {};
+    let seriesList = [];
+    let plottedTraces = [];
+
+    $(document).ready(() => {
+      $('#seriesSelect, #errSeries1, #errSeries2').select2({ placeholder: 'Select...', allowClear: true, hideSelected: true });
+
+      // hide error section by default
+      $('#updateErrorBtn').prop('disabled', true);
+      $('#error-graph').hide();
+    });
+
+    $('#csvFiles').on('change', async e => {
+      for (const file of e.target.files) {
+        const text = await new Promise(res => {
+          const reader = new FileReader(); reader.onload = () => res(reader.result); reader.readAsText(file);
+        });
+        dataFrames[file.name] = parseCSV(text);
+      }
+      e.target.value = '';
+      refresh();
+    });
+
+    function refresh() {
+      updateFileList();
+      updateSeriesOptions();
+      plotMain();
+
+      // auto-update error whenever underlying series, threshold, filter, window, normalize or swap change
+      $('#seriesSelect, #errType, #errThreshold, #filterType, #windowSize, #normalizeTime, #swapError')
+        .off('change input', plotError)
+        .on('change input', plotError);
+      // re-run error plot
+      plotError();
+    }
+
+    function updateFileList() {
+      const container = $('#file-list').empty();
+      const files = Object.keys(dataFrames);
+      if (files.length === 0) return container.text('No files loaded.');
+      files.forEach(name => {
+        const tag = $(`<span class='file-tag'>${name}<span class='remove-file'>×</span></span>`);
+        tag.find('.remove-file').data('name', name);
+        container.append(tag);
+      });
+    }
+
+    $(document).on('click', '.remove-file', function() {
+      const name = $(this).data('name');
+      delete dataFrames[name];
+      refresh();
+    });
+
+    function updateSeriesOptions() {
+      seriesList = [];
+      Object.entries(dataFrames).forEach(([fname, rows]) => {
+        const cols = Object.keys(rows[0] || {}).filter(c => !/time|timestamp/i.test(c));
+        cols.forEach(c => seriesList.push(`${fname}: ${c}`));
+      });
+      const prev = $('#seriesSelect').val() || [];
+      const opts = seriesList;
+      const valid = prev.filter(v => opts.includes(v));
+      $('#seriesSelect').empty().append(opts.map(s => new Option(s, s))).val(valid).trigger('change');
+    }
+
+    $('#seriesSelect, #filterType, #windowSize, #normalizeTime').on('change input', () => {
+      plotMain();
+      plotError();
+    });
+
+    function plotMain() {
+      const sel = $('#seriesSelect').val() || [];
+      const ft = $('#filterType').val();
+      const w = +$('#windowSize').val();
+      const norm = $('#normalizeTime').is(':checked');
+      const traces = [];
+
+      sel.forEach(s => {
+        const [fname, col] = s.split(': ').map(x => x.trim());
+        const data = dataFrames[fname];
+        if (!data) return;
+        let x = data.map(r => new Date(r.timestamp || r.time || Object.values(r)[0]));
+        if (norm) { const t0 = x[0]; x = x.map(v => (v - t0) / 1000); }
+        let y = data.map(r => +r[col]);
+        y = applyFilter(y, ft, w);
+        traces.push({ x, y, mode: 'lines', name: s });
+      });
+
+      plottedTraces = traces;
+      Plotly.newPlot('visualizer-graph', traces, {
+        title: 'Series Plot',
+        xaxis: { title: norm ? 'Elapsed Time (s)' : 'Timestamp' },
+        yaxis: { title: 'Value' },
+        margin: { t: 50 }
+      });
+    }
+
+    function plotError() {
+      $('#error-graph').show();
+      const norm = $('#normalizeTime').is(':checked');
+      const sel = $('#seriesSelect').val() || [];
+      if (sel.length < 2) return;
+      let [s1, s2] = sel;
+      if ($('#swapError').is(':checked')) [s1, s2] = [s2, s1];
+
+      const type = $('#errType').val(), tol = parseFloat($('#errThreshold').val());
+      if (!s1 || !s2 || isNaN(tol)) return;
+
+      const t1 = unify(plottedTraces.find(t => t.name === s1));
+      const t2 = unify(plottedTraces.find(t => t.name === s2));
+      if (!t1 || !t2) return;
+
+      const allX = Array.from(new Set(t1.xs.concat(t2.xs))).sort((a, b) => a - b);
+      const y1 = interp(t1.xs, t1.ys, allX);
+      const y2 = interp(t2.xs, t2.ys, allX);
+
+      // use the union of timestamps for error plotting
+      let xVals;
+      if (norm) {
+        // already in seconds, no further scaling
+        xVals = allX;
+      } else {
+        xVals = allX.map(v => new Date(v));
+      }
+      const errVals = allX.map((orig, i) => {
+        const d = y1[i] - y2[i];
+        if (type === 'difference') return d;
+        if (type === 'absolute')   return Math.abs(d);
+        if (type === 'squared')    return d * d;
+        return d;
+      });
+      const trace = { x: xVals, y: errVals, mode: 'lines', name: 'Error' };
+
+      const shapes = [];
+      // use magnitude for health threshold
+      let healthy = Math.abs(errVals[0]) <= tol;
+      let start = 0;
+      for (let i = 1; i <= errVals.length; i++) {
+        const ok = i < errVals.length ? Math.abs(errVals[i]) <= tol : null;
+        if (ok !== healthy) {
+          shapes.push({
+            type: 'rect', xref: 'x', yref: 'paper',
+            x0: xVals[start], x1: xVals[i-1],
+            y0: 0, y1: 1,
+            fillcolor: healthy ? 'rgba(0,255,0,0.2)' : 'rgba(255,0,0,0.2)',
+            line: { width: 0 },
+            layer: 'below'
+          });
+          start = i;
+          healthy = ok;
+        }
+      }
+
+      Plotly.newPlot('error-graph', [trace], {
+        title: `Error (${type}) & Health Threshold: ${tol}`,
+        xaxis: {
+          title: norm ? 'Elapsed Time (s)' : 'Timestamp',
+          type: norm ? 'linear' : 'date'
+        },
+        yaxis: { title: 'Error' },
+        shapes: shapes,
+        margin: { t: 50 }
+      });
+    }
+
+    // Helpers
+    function unify(trace) {
+      if (!trace) return null;
+      return { xs: trace.x.map(v => v instanceof Date ? v.getTime() : v), ys: trace.y };
+    }
+    function interp(xs, ys, allX) {
+      const res = [];
+      let i = 0;
+      for (const v of allX) {
+        while (i < xs.length - 2 && xs[i+1] < v) i++;
+        const x0 = xs[i], x1 = xs[i+1], y0 = ys[i], y1 = ys[i+1];
+        let y;
+        if (v <= xs[0]) y = ys[0];
+        else if (v >= xs[xs.length-1]) y = ys[ys.length-1];
+        else {
+          const t = (v - x0) / (x1 - x0);
+          y = y0 + (y1 - y0) * t;
+        }
+        res.push(y);
+      }
+      return res;
+    }
+    function applyFilter(arr, type, w) {
+      if (type === 'rolling') return arr.map((_,i) => avg(arr.slice(Math.max(0,i-w+1), i+1)));
+      if (type === 'ema') {
+        const a = 2/(w+1);
+        return arr.reduce((o,v,i) => (o[i] = i ? a*v + (1-a)*o[i-1] : v, o), []);
+      }
+      if (type === 'median') return arr.map((_,i) => median(arr.slice(Math.max(0,i-w+1), i+1)));
+      return arr;
+    }
+    function avg(a) { const v = a.filter(n => !isNaN(n)); return v.reduce((s,x)=>s+x,0)/v.length; }
+    function median(a) { const v = a.filter(n => !isNaN(n)).sort((x,y)=>x-y); const m = Math.floor(v.length/2); return v.length%2? v[m] : (v[m-1]+v[m])/2; }
+    function parseCSV(text) {
+      const lines = text.trim().split('\n');
+      const hdr = lines[0].split(',');
+      return lines.slice(1).map(line => {
+        const vals = line.split(',');
+        return hdr.reduce((obj,k,i) => (obj[k] = isNaN(vals[i]) ? vals[i] : +vals[i], obj), {});
+      });
+    }
+  </script>
+</body>
+</html>
