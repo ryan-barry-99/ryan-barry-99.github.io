@@ -3,25 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Under Construction">
-  <title>Under Construction</title>
+  <meta name="description" content="Collaborative Robot Interactive Game by Ryan Barry">
+  <title>Multiple Object Tracking with Cobot - Ryan Barry</title>
   <link rel="stylesheet" href="/assets/css/base.css">
-  <link rel="stylesheet" href="/assets/css/under-construction.css">
+  <link rel="stylesheet" href="/assets/css/projects.css">
 </head>
 <body>
-  <!-- Navbar -->
-  <div id="navbar"></div>
+  <div id="navbar"></div> <!-- Load navbar dynamically -->
 
-  <!-- Main Content -->
-  <div class="construction-container">
-    <h1>🚧 Under Construction 🚧</h1>
-    <p>We're working hard to bring this page to life. Please check back soon!</p>
-    <a href="https://github.com/ryan-barry-99/DeepSORT-with-OAK-D-for-Collaborative-Robots" class="btn">View on GitHub</a>
-    <a href="/" class="btn">Return to Home</a>
-  </div>
+  <main class="container">
+    <header class="page-header">
+      <h1>Collaborative Robot Interactive Game</h1>
+      <p>Created a ball and cup game with a collaboritive robot, utilizing an object detection and tracking algorithm.</p>
+    </header>
 
-  <!-- Footer -->
-  <div id="footer"></div>
+    <div class="project-image-container">
+      <h2>Baxter Stacking Cups</h2>
+      <img src="/assets/images/baxter-robot/robot-cup-stack.png"  alt="Robot" >
+      <p>The Baxter collaborative robot stacks cups in a pyramid, with the cup containing the ball on top of the stack.</p>
+    </div>
+
+    <!-- Overview -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Overview</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Overview</h2>
+        <p>
+          This project utilized the object tracking algorithm DeepSORT to create play a ball and cup game between a collaborative robot and a human.
+        </p>
+        <p>
+        </p>
+      </div>
+    </section>
+
+    <!-- Object Detection -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Object Detection</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Object Detection and Tracking with YOLOv6 & DeepSORT</h2>
+        <ul>
+          <li><strong>Detection Model:</strong> YOLOv8 trained on balloon images for real-time detection.</li>
+          <li><strong><a href="https://www.kaggle.com/datasets/vbookshelf/v2-balloon-detection-dataset" class="blue-link">V2 Balloon Dataset</a>:</strong> 75 annotated images processed into YOLO-compatible format.</li>
+          <li><strong>Deployment:</strong> Model deployed on an OAK-D camera with DepthAI pipelines for real-time detection and velocity estimation.</li>
+        </ul>
+        <div class="image-container">
+          <img src="/assets/images/omnidirectional-robot/balloon-detection.png" alt="Balloon Detection with YOLOv8" class="project-image-container">
+        </div>
+      </div>
+    </section>
+
+    <!-- Control System -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Control System</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Control System Design</h2>
+        <ul>
+          <li><strong>Architecture:</strong> ROS-based system with modular nodes for kinematics, velocity updates, and PID control.</li>
+          <li><strong>PID Controllers:</strong> Used for wheel velocity control based on encoder feedback.</li>
+          <li><strong>Object Detection and Tracking:</strong>YOLOv8 employed with DepthAI pipeline to estimate 3D velocity of a floating balloon with a weighted average method.</li>
+        </ul>
+        <div class="project-image-container">
+          <img src="/assets/images/omnidirectional-robot/ros-arch.png" alt="ROS Control System Architecture" class="project-image">
+        </div>
+      </div>
+    </section>
+
+    <!-- Hardware Design -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Hardware Design</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Hardware Overview</h2>
+        <ul>
+          <li><strong>Omnidirectional Drive Base:</strong> Three-wheeled design using custom 3D-printed Swedish-90 wheels.</li>
+          <li><strong>Balloon Launcher:</strong> Spring-loaded trampoline mechanism for interaction testing.</li>
+          <li><strong>Power System:</strong></li>
+          <ul>
+            <li>7.4V LiPo battery.</li>
+            <li>Buck converters to 5V rails.</li>
+            <li>LDO to 3.3V rail.</li>
+          </ul>
+        </ul>
+        <div class="project-image-container">
+          <h3>Robot CAD</h3>
+          <img src="/assets/images/omnidirectional-robot/robot-cad.png" alt="Omnidirectional Robot Design" class="project-image-container">
+        </div>
+        <div class="project-image-container">
+          <h3>Wheel CAD</h3>
+          <img src="/assets/images/omnidirectional-robot/wheel-cad.png" alt="Swedish-90 Wheels" class="project-image-container">
+          <p>Two of these panels screwed together back to back make up a wheel with pins through the rollers.</p>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Results</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>Performance and Results</h2>
+        <ul>
+          <li>YOLOv8 achieved a precision-recall score of 0.821 for balloon detection.</li>
+          <li>Real-time tracking achieved 9 FPS on Jetson Nano with OAK-D.</li>
+          <li>Hardware demonstrated issues with the Jetson Nano's pins not reading encoder values of the wheels, preventing smooth operation due to a lack of odometry. With more time this would be solved by transitioning to an external microcontroller for peripheral control.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- GitHub Repository -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>GitHub Repository</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <h2>View the Code</h2>
+        <p>All source code and documentation for this project are available on GitHub.</p>
+        <a href="https://github.com/ryan-barry-99/DeepSORT-with-OAK-D-for-Collaborative-Robots" target="_blank" class="btn github-btn">
+          View on GitHub
+        </a>
+      </div>
+    </section>
+
+    <!-- Research Paper -->
+    <section class="collapsible">
+      <button class="collapsible-header">
+        <span>Research Paper</span>
+        <span class="dropdown-icon">&#9656;</span>
+      </button>
+      <div class="collapsible-content">
+        <iframe 
+          src="/assets/files/DeepSORT with OAK-D for Collaborative Robots.pdf" 
+          width="100%" 
+          height="600px" 
+          style="border: none;">
+          Your browser does not support embedded PDFs. 
+          <a href="/assets/files/DeepSORT with OAK-D for Collaborative Robots.pdf" target="_blank">Download the PDF</a>
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div> <!-- Load footer dynamically -->
 
   <script src="/assets/js/script.js"></script>
 </body>
