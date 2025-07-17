@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browser-based serial terminal using Web Serial API">
+  <title>Serial Terminal</title>
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/projects.css">
+  <link rel="stylesheet" href="/assets/css/project-splash.css">
+  <!-- xterm.css for terminal styling -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css">
+  <style>
+    .section { margin-bottom: 1rem; }
+    #controls { display: flex; align-items: center; flex-wrap: wrap; }
+    #controls label { margin-right: 0.5rem; font-weight: 500; }
+    #controls input[type="number"] { width: 100px; padding: 4px; margin-right: 1rem; }
+    #controls button { padding: 6px 12px; background: #00796b; color: #fff; border: none; border-radius: 4px; cursor: pointer; margin-right: 0.5rem; }
+    #controls button:hover { background: #005a4f; }
+    #controls span { margin-left: 1rem; font-weight: 500; }
+    #terminal-container { width: 100%; height: 500px; border: 1px solid #e0e0e0; border-radius: 4px; background: #000; }
+  </style>
+</head>
+<body>
+  <div id="navbar"></div>
+  <main class="container">
+    <header class="page-header">
+      <h1>Serial Terminal</h1>
+      <p>Connect to a serial device and view its UART output directly in your browser.</p>
+    </header>
+
+    <div class="project-container-alt">
+      <div class="section" id="controls">
+        <label for="baudRate">Baud Rate:</label>
+        <input type="number" id="baudRate" value="9600" min="300" step="300">
+        <button id="connect">Connect to Device</button>
+        <button id="clear">Clear</button>
+        <span id="status">Disconnected</span>
+      </div>
+      <div class="section" id="terminal-container"></div>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <!-- Dependencies -->
+  <script src="/assets/js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
+  <script>
+    // Terminal setup
+    const term = new Terminal({ cursorBlink: true, theme: { background: '#000', foreground: '#0f0' } });
+    term.open(document.getElementById('terminal-container'));
+    term.focus();
+    term.write('Welcome to Serial Terminal\r\n');
+
+    // State
+    let selectedPort = null;
+    let reader = null;
+    let writer = null;
+    let dataListener = null;
+    let portOpen = false;
+
+    const connectButton = document.getElementById('connect');
+    const clearButton = document.getElementById('clear');
+    const statusEl = document.getElementById('status');
+    const baudInput = document.getElementById('baudRate');
+
+    // Clear terminal
+    clearButton.addEventListener('click', () => term.clear());
+
+    // Connect / disconnect logic
+    connectButton.addEventListener('click', async () => {
+      if (portOpen) {
+        await disconnect();
+        return;
+      }
+      try {
+        const baudRate = parseInt(baudInput.value, 10) || 9600;
+        // Request port only first time
+        if (!selectedPort) {
+          selectedPort = await navigator.serial.requestPort();
+        }
+        await selectedPort.open({ baudRate });
+        portOpen = true;
+        statusEl.textContent = `Connected @ ${baudRate}`;
+        connectButton.textContent = 'Disconnect';
+        baudInput.disabled = true;
+        term.focus();
+
+        // Reader setup
+        const decoder = new TextDecoderStream();
+        selectedPort.readable.pipeTo(decoder.writable);
+        reader = decoder.readable.getReader();
+        readLoop();
+
+        // Writer setup
+        writer = selectedPort.writable.getWriter();
+        dataListener = term.onData(data => {
+          const bytes = new TextEncoder().encode(data);
+          writer.write(bytes);
+        });
+      } catch (err) {
+        term.write(`\r\nError: ${err.message}\r\n`);
+      }
+    });
+
+    async function readLoop() {
+      try {
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          term.write(value);
+        }
+      } catch (err) {
+        term.write(`\r\nRead error: ${err.message}\r\n`);
+      }
+    }
+
+    async function disconnect() {
+      // Dispose terminal listener
+      if (dataListener) {
+        dataListener.dispose();
+        dataListener = null;
+      }
+      // Cancel reader
+      if (reader) {
+        try {
+          await reader.cancel();
+        } catch {};
+        reader.releaseLock();
+        reader = null;
+      }
+      // Close writer properly
+      if (writer) {
+        try {
+          await writer.close();
+        } catch {};
+        writer.releaseLock();
+        writer = null;
+      }
+      // Close the serial port and reset
+      if (selectedPort) {
+        try {
+          await selectedPort.close();
+        } catch {};
+        selectedPort = null;
+      }
+      portOpen = false;
+      statusEl.textContent = 'Disconnected';
+      connectButton.textContent = 'Connect to Device';
+      baudInput.disabled = false;
+      term.focus();
+    }
+  </script>
+</body>
+</html>
