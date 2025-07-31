@@ -136,10 +136,9 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
     {Bryan, TX}
     {March 2025 – Present}
     {
-        \item Designed fault-tolerant robotic manipulators for microgravity environments, emphasizing modularity and resilience to extreme temperature shifts and radiation.
-        \item Designed custom PCBs in Altium for testing and spaceflight applications.
-        %         % \item Built a Python SDK atop an existing ROS2 EtherCAT wrapper to expose a joint-indexed API for real-time telemetry and multi-mode actuator control (e.g., position, torque, current, impedance). Auto-parses Xacro files to map joint IDs, load actuator-specific coefficients, and structure PDO data into clean, queryable dictionaries. Fully abstracts ROS2, enabling intuitive scripting for prototyping and environmental testing, and reducing setup time by hours across the lab.
-        \item Built a Python SDK atop an existing ROS2 wrapper to expose a joint-indexed API for real-time telemetry and multi-mode actuator control. Auto-parses Xacro files to map joint ids and actuator specific information, and structure incoming telemetry into clean, queryable dictionaries. Fully abstracts ROS2, enabling intuitive scripting for prototyping and environmental testing, and reducing setup time by hours across the lab.
+        \item Designed electronics and software for fault-tolerant robotic manipulators for microgravity environments, emphasizing modularity and resilience to extreme temperature shifts and radiation.
+        \item Designed custom PCBs in Altium for testing, actuator bringup, and spaceflight applications.
+        \item Designed and implemented a custom Python SDK atop a ROS2 + EtherCAT stack, providing a joint-indexed interface for actuator telemetry, motion control, and peripheral management (brakes, heaters). Parses ROS2 joint state streams and exposes data as easily queryable Python dictionaries, while wrapping control services into intuitive function calls. Fully decouples application logic from ROS2 internals; now adopted by other teams in the lab, cutting integration and debug time by hours per actuator.
         \item Built real-time data acquisition tools using embedded C++ and Python, enabling reliable telemetry streaming from microcontrollers to host machines for diagnostic logging, fault response validation, and system performance analysis.
 
     }
@@ -372,7 +371,9 @@ Bachelor of Science in Electrical Engineering, \textit{Summa Cum Laude} \hfill C
 
     \item \textbf{Wheelchair Attachment Prototype \textit{(In Progress)}:} Prototyping a non-invasive, low-drag wheelchair add-on with hybrid manual and powered control.
     
-    \item \href{https://ryanbarry.me/tools/speed-reader/}{\textbf{Speed Reader Web App (Summer 2024)}: Built a fully functional, state-driven single-page reading tool in vanilla JS/HTML/CSS; implemented real-time control logic (WPM, font, UI flow) without front-end libraries.}
+    \item \href{https://ryanbarry.me/tools/data-visualizer/}{\textbf{CSV Visualizer Web App \textit{(Summer 2025)}}: Developed a browser-based CSV plotting tool with dynamic filtering, multi-series support, and health/error visualization.}
+    
+    \item \href{https://ryanbarry.me/tools/speed-reader/}{\textbf{Speed Reader Web App \textit{(Summer 2024)}}: Built a fully functional, state-driven single-page reading tool in vanilla JS/HTML/CSS; implemented real-time control logic (WPM, font, UI flow) without front-end libraries.}
     
     \item \href{https://ryanbarry.me/projects/electrical-engineering/underwater-robot/}{\textbf{Underwater Robot Motherboard PCB \textit{(Spring 2023)}:} Designed and integrated a PCB with a 7-sensor perception suite, power distribution, and propulsion control.}
     
